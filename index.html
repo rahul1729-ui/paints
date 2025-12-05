@@ -1,259 +1,1109 @@
-Home
-Travel
-Academic
-Sports
-Library
-please create a app for my shop management i want to create that one in which i gave the choice to t
-above 200 ma stock list
-Fix errors in code
-all the new stock which were launched in between 6 month
-hi
-hi
-today market analysis
-hi
-Dark vs milk chocolate
-Body reaction to spicy food
-View All
-Home
-Discover
-Spaces
-Finance
-Account
-please create a app for my shop management i want to create that one in which i gave the choice to the customer for the color sellection as i have a paints shop by the name of sahu paints in the khargupur bazar, ikauna road dist - gonda i want so much color pallet to the customer by which they can choose it. they can like it and a login feature also in it please
-please create a app for my shop management i want to create that one in which i gave the choice to the customer for the color sellection as i have a paints shop by the name of sahu paints in the khargupur bazar, ikauna road dist - gonda 
-i want so much color pallet to the customer by which they can choose it. they can like it and a login feature also in it please
-
-
-Answer
-
-Assets
-Generated File
-
-Generated File
-
-Generated File
-
-
-I've created a complete Paint Shop Management Application for Sahu Paints in Khargapur Bazar, Ikauna Road, District Gonda. The app includes all the features you requested: extensive color palette selection, customer login system, like functionality, and shop management capabilities.​​
-
-Complete Application Package
-Your app consists of three main files that work together: index.html (main structure), styles.css (design), and app.js (functionality), plus a detailed README guide . Simply download all files, keep them in the same folder, and double-click index.html to launch the app in any web browser.
-
-Key Features
-Extensive Color Palette
-The app includes 40+ professional paint colors organized into five categories: Interior Paints (Royal White, Cream Delight, Sky Blue, Mint Fresh), Exterior Paints (Stone Grey, Terracotta, Ocean Blue), Wood Finishes (Teak, Mahogany, Oak), Metal Paints (Silver, Gold, Bronze), and Decorative options (Pearl White, Coral Reef, Turquoise) . Each color displays with a visual preview, color code, and detailed description.​
-
-Customer Features
-Customers can search and filter colors by category or name, click any color card to view full details in a modal window, and use the heart button (♡/♥) to like and save favorite colors. The "My Favorites" tab stores all liked colors for easy access, and customers can select multiple colors to add to their orders .​
-
-Login System
-The app includes a secure login interface with username and password fields . For demonstration purposes, use username: admin and password: admin123. The system maintains user sessions and includes a logout function .
-
-Order Management
-Customers can create orders by selecting colors from the palette, entering personal details (name, contact number, address), specifying quantity in liters, and submitting orders. All orders are displayed in the "My Orders" tab with complete customer information, selected colors with visual previews, order dates, and status tracking .​
-
-How to Use
-Open the app in your browser, log in with the demo credentials, browse the color palette using the filters and search bar, click hearts to like colors you prefer, click any color for detailed information, and use "Add to Order" to select colors for purchase . Navigate between three tabs: Color Palette (browse all colors), My Favorites (view saved colors), and My Orders (manage orders and create new ones) .
-
-Technical Highlights
-The app uses LocalStorage to save all data locally in the browser, meaning favorites and orders persist even after closing the app . It's fully responsive and works on desktop, tablet, and mobile devices . No server or database is required initially, making it easy to deploy.​​
-
-Customization Options
-You can easily add more colors by editing the paintColors array in app.js, change shop details and branding in index.html, modify colors and styling in styles.css, and add features like price calculators, inventory tracking, or payment processing . For production use, consider implementing backend authentication, database integration for orders, email notifications, and SSL security .
-
-Your paint shop application is ready to use immediately and provides a professional platform for customers to explore colors and place orders while helping you manage your business efficiently !​
-
-how i can get it or go to that site
-
-Download the Files from This Chat
-The files I created are available right here in our conversation . Look for the download buttons or file icons next to each filename (index.html, styles.css, app.js, and README.md) in my previous response. Click each one to download all four files to your computer and save them in the same folder.​​
-
-Run Locally on Your Computer
-Once downloaded, navigate to the folder where you saved the files, and double-click on index.html . The app will open automatically in your default web browser (Chrome, Firefox, Edge, or Safari). You can now use the app immediately by logging in with username: admin and password: admin123 .​​
-
-Make It a Live Website (Free Options)
-If you want customers to access your app online from anywhere, you can host it for free using several methods:​​
-
-GitHub Pages (Completely Free)
-Create a free account at github.com, click the "+" button and select "New repository", name it (e.g., "sahu-paints"), and click "Create repository". Click "Add file" > "Upload files", drag all four files (index.html, styles.css, app.js, README.md) into the upload area, click "Commit changes", then go to "Settings" > "Pages", select "main" branch as the source, and click "Save". Your website will be live at https://yourusername.github.io/sahu-paints/ within a few minutes.​
-
-Tiiny Host (Fastest & Easiest)
-Select all four files in your folder, right-click and create a ZIP file (make sure index.html is inside). Go to tiiny.host, drag and drop your ZIP file, enter a name like "sahu-paints" for your URL, and click "Launch". Your site goes live instantly at https://sahu-paints.tiiny.site (or similar).​​
-
-Other Free Hosting Options
-Netlify offers drag-and-drop deployment with continuous updates. Vercel provides fast deployment with excellent performance. Render includes free static site hosting with custom domains.​​
-
-Quick Start Steps
-Download all four files from this chat (look for download icons), save them in one folder on your computer, double-click index.html to test locally, then choose a hosting option above to make it live online.​​
-
-Important Notes
-The app currently stores data in the browser's local storage, so it works perfectly for single-device use . For a production website accessible by multiple customers online, you'll eventually want to add a proper database (like Firebase or MySQL) and backend server to store orders centrally. The current version is perfect for testing and getting started immediately .​
-
-Your Sahu Paints app is ready to use right now - just download the files and open index.html !
-
-Related
-
-Open the hosting site for quick upload instructions
-
-Show steps to deploy a static site on GitHub Pages
-
-Compare free static hosts like Tiiny Host and GitHub Pages
-
-How to zip and prepare my HTML/CSS/JS for upload
-
-Set up a custom domain for my hosted static site
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahu Paints - Shop Management</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Sahu Paints House – Color Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #c62828;
+      --primary-soft: #ffe5e5;
+      --bg: #f5f6fa;
+      --card-bg: #ffffff;
+      --border-soft: #e0e0e0;
+      --text-main: #222222;
+      --text-muted: #777777;
+      --shadow-soft: 0 8px 20px rgba(0,0,0,0.06);
+      --radius-card: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, #ffffff, #f1f3f8);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(135deg, #ffffff 0%, #ffe5e5 100%);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #c62828);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 6px 16px rgba(198,40,40,0.45);
+    }
+
+    .brand-text-main {
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-contact {
+      text-align: right;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-contact strong {
+      display: block;
+      color: var(--primary);
+      font-size: 14px;
+    }
+
+    /* LAYOUT */
+    .app-shell {
+      max-width: 1100px;
+      margin: 16px auto 32px;
+      padding: 0 16px 16px;
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .app-shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* SIDEBAR NAV */
+    .sidebar {
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      padding: 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      padding: 0 8px;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item {
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: background 0.16s ease, color 0.16s ease, transform 0.08s ease;
+    }
+
+    .nav-item span.icon {
+      width: 18px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .nav-item.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 6px 14px rgba(198,40,40,0.5);
+      transform: translateY(-1px);
+    }
+
+    .nav-item:not(.active):hover {
+      background: #f7f7f8;
+      color: var(--text-main);
+    }
+
+    /* MAIN AREA */
+    .main-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section-card {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      padding: 16px 16px 18px;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* FILTER + SEARCH */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      background: #fafafa;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .chip.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .search-input {
+      flex: 1 1 140px;
+      min-width: 120px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 7px 12px;
+      font-size: 12px;
+      outline: none;
+      background: #fafafa;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+
+    /* COLOR CARDS GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .color-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.03);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+    }
+
+    .color-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    }
+
+    .color-swatch {
+      height: 90px;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .color-card-body {
+      padding: 8px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .color-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .color-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .tag-pill {
+      font-size: 10px;
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: #f1f1f1;
+    }
+
+    .code-pill {
+      font-size: 10px;
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: #f9f9f9;
+      border: 1px dashed #ddd;
+    }
+
+    .card-actions {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-ghost {
+      border: none;
+      background: transparent;
+      font-size: 11px;
+      color: var(--primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 0;
+    }
+
+    .btn-ghost.small {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* FORMS */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .form-group label {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .form-control, .form-select {
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      padding: 7px 10px;
+      font-size: 12px;
+      outline: none;
+      background: #fafafa;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+
+    .form-row-inline {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .color-preview-box {
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      width: 110px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 8px 18px;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(198,40,40,0.55);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(198,40,40,0.65);
+    }
+
+    /* IMAGE GALLERY */
+    .image-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 70%;
+      overflow: hidden;
+    }
+
+    .image-wrapper img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-card-body {
+      padding: 8px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+    }
+
+    /* MODAL */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+      padding: 16px;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 18px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-body {
+      padding: 14px 16px 16px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-color-swatch {
+      height: 70px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* FOOTER */
+    .app-footer {
+      max-width: 1100px;
+      margin: 0 auto 18px;
+      padding: 0 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .app-footer strong { color: var(--text-main); }
+  </style>
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="loginPage" class="page active">
-        <div class="login-container">
-            <div class="shop-header">
-                <h1>Sahu Paints</h1>
-                <p>Khargapur Bazar, Ikauna Road, Dist - Gonda</p>
-            </div>
-            <div class="login-box">
-                <h2>Login</h2>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label>Username/Email</label>
-                        <input type="text" id="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="password" required>
-                    </div>
-                    <button type="submit" class="btn-primary">Login</button>
-                    <p class="demo-info">Demo: username - admin, password - admin123</p>
-                </form>
-                <div class="register-link">
-                    <p>New customer? <a href="#" id="registerLink">Register here</a></p>
-                </div>
-            </div>
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-block">
+        <div class="brand-logo">S</div>
+        <div>
+          <div class="brand-text-main">Sahu Paints House</div>
+          <div class="brand-text-sub">Digital Color & Shade Studio</div>
         </div>
+      </div>
+      <div class="header-contact">
+        <span>For colour consultation & bookings</span>
+        <strong>Call / WhatsApp: 7007104389</strong>
+        <span>Gonda, Uttar Pradesh</span>
+      </div>
     </div>
+  </header>
 
-    <!-- Main App Page -->
-    <div id="mainPage" class="page">
-        <header class="app-header">
-            <div class="header-content">
-                <h1>Sahu Paints</h1>
-                <div class="user-info">
-                    <span id="userName">Welcome, Customer</span>
-                    <button id="logoutBtn" class="btn-secondary">Logout</button>
-                </div>
-            </div>
-        </header>
+  <main class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Studio navigation</div>
+      <ul class="nav-list">
+        <li class="nav-item active" data-target="colors-view">
+          <span class="icon">🎨</span> Color gallery
+        </li>
+        <li class="nav-item" data-target="colors-add">
+          <span class="icon">➕</span> Add new color
+        </li>
+        <li class="nav-item" data-target="images-view">
+          <span class="icon">🖼️</span> Shop gallery
+        </li>
+        <li class="nav-item" data-target="images-add">
+          <span class="icon">📤</span> Add shop image
+        </li>
+      </ul>
+    </aside>
 
-        <main class="main-content">
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="colors">Color Palette</button>
-                <button class="tab-btn" data-tab="favorites">My Favorites</button>
-                <button class="tab-btn" data-tab="orders">My Orders</button>
-            </div>
-
-            <!-- Color Palette Tab -->
-            <div id="colorsTab" class="tab-content active">
-                <div class="section-header">
-                    <h2>Explore Our Color Collection</h2>
-                    <div class="filters">
-                        <select id="categoryFilter">
-                            <option value="all">All Categories</option>
-                            <option value="interior">Interior Paints</option>
-                            <option value="exterior">Exterior Paints</option>
-                            <option value="wood">Wood Finishes</option>
-                            <option value="metal">Metal Paints</option>
-                            <option value="decorative">Decorative</option>
-                        </select>
-                        <input type="text" id="searchColor" placeholder="Search colors...">
-                    </div>
-                </div>
-
-                <div class="color-grid" id="colorGrid">
-                    <!-- Colors will be populated by JavaScript -->
-                </div>
-            </div>
-
-            <!-- Favorites Tab -->
-            <div id="favoritesTab" class="tab-content">
-                <h2>Your Favorite Colors</h2>
-                <div class="color-grid" id="favoritesGrid">
-                    <p class="empty-message">No favorites yet. Start exploring colors!</p>
-                </div>
-            </div>
-
-            <!-- Orders Tab -->
-            <div id="ordersTab" class="tab-content">
-                <h2>Order Management</h2>
-                <div class="order-form">
-                    <h3>Create New Order</h3>
-                    <form id="orderForm">
-                        <div class="form-group">
-                            <label>Customer Name</label>
-                            <input type="text" id="customerName" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Contact Number</label>
-                            <input type="tel" id="contactNumber" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Selected Colors</label>
-                            <div id="selectedColors" class="selected-colors-display">
-                                Select colors from the Color Palette tab
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Quantity (Liters)</label>
-                            <input type="number" id="quantity" min="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea id="address" rows="3" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">Place Order</button>
-                    </form>
-                </div>
-                <div class="orders-list">
-                    <h3>Recent Orders</h3>
-                    <div id="ordersList"></div>
-                </div>
-            </div>
-        </main>
-
-        <!-- Color Detail Modal -->
-        <div id="colorModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="color-detail">
-                    <div class="color-preview" id="modalColorPreview"></div>
-                    <div class="color-info">
-                        <h2 id="modalColorName"></h2>
-                        <p id="modalColorCode"></p>
-                        <p id="modalColorCategory"></p>
-                        <p id="modalColorDescription"></p>
-                        <div class="color-actions">
-                            <button id="modalLikeBtn" class="btn-like">
-                                <span class="heart">♡</span> Like
-                            </button>
-                            <button id="modalAddToOrderBtn" class="btn-primary">Add to Order</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- MAIN PANEL -->
+    <section class="main-panel">
+      <!-- COLOR GALLERY -->
+      <section class="section-card" id="colors-view" data-section>
+        <div class="section-header">
+          <div>
+            <div class="section-title">Color gallery</div>
+            <div class="section-subtitle">Show customers live shades and codes</div>
+          </div>
         </div>
-    </div>
 
-    <script src="app.js"></script>
+        <div class="filter-row">
+          <div class="chip active" data-filter="all">All</div>
+          <div class="chip" data-filter="interior">Interior</div>
+          <div class="chip" data-filter="exterior">Exterior</div>
+          <div class="chip" data-filter="ceiling">Ceiling</div>
+          <div class="chip" data-filter="kids">Kids room</div>
+          <input type="text" id="searchColors" class="search-input" placeholder="Search by name or code..." />
+        </div>
+
+        <div id="colorsGrid" class="grid"></div>
+        <div id="colorsEmptyMsg" class="section-subtitle" style="margin-top:8px; display:none;">
+          No colors saved yet. Add your first shade from “Add new color”.
+        </div>
+      </section>
+
+      <!-- ADD COLOR -->
+      <section class="section-card" id="colors-add" data-section style="display:none;">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Add new color</div>
+            <div class="section-subtitle">Save any company shade with your own naming</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="colorName">Color name</label>
+            <input id="colorName" class="form-control" placeholder="Eg. Royal Ivory, Cool Blue" />
+          </div>
+          <div class="form-group">
+            <label for="colorCode">Shade code (optional)</label>
+            <input id="colorCode" class="form-control" placeholder="Eg. AP-101, Custom-01" />
+          </div>
+          <div class="form-group">
+            <label for="colorSegment">Usage segment</label>
+            <select id="colorSegment" class="form-select">
+              <option value="interior">Interior</option>
+              <option value="exterior">Exterior</option>
+              <option value="ceiling">Ceiling</option>
+              <option value="kids">Kids room</option>
+              <option value="other">Other / Special</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="colorHex">Pick shade</label>
+            <input id="colorHex" type="color" class="form-control" value="#c62828" />
+          </div>
+          <div class="form-group" style="grid-column:1/-1;">
+            <label for="colorDesc">Notes for this shade</label>
+            <textarea id="colorDesc" class="form-control" rows="3" placeholder="Eg. Best for living room; matches with white / off-white"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row-inline">
+          <div id="colorPreviewBox" class="color-preview-box" style="background:#c62828;">
+            <span id="colorPreviewText">#c62828</span>
+          </div>
+          <button id="btnSaveColor" class="btn-primary">
+            <span>Save color</span> <span>💾</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SHOP GALLERY -->
+      <section class="section-card" id="images-view" data-section style="display:none;">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Shop & project gallery</div>
+            <div class="section-subtitle">Show your shop and completed sites</div>
+          </div>
+        </div>
+
+        <div id="imagesGrid" class="grid"></div>
+        <div id="imagesEmptyMsg" class="section-subtitle" style="margin-top:8px; display:none;">
+          No images added yet. Upload your shop photos from “Add shop image”.
+        </div>
+      </section>
+
+      <!-- ADD IMAGE -->
+      <section class="section-card" id="images-add" data-section style="display:none;">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Add shop / site image</div>
+            <div class="section-subtitle">Upload storefront, interior or project photos</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="imageTitle">Title</label>
+            <input id="imageTitle" class="form-control" placeholder="Eg. Front view, 2BHK exterior" />
+          </div>
+          <div class="form-group">
+            <label for="imageArea">Area / Location (optional)</label>
+            <input id="imageArea" class="form-control" placeholder="Eg. Gonda, living room, exterior front" />
+          </div>
+          <div class="form-group" style="grid-column:1/-1;">
+            <label for="imageDesc">Description</label>
+            <textarea id="imageDesc" class="form-control" rows="3" placeholder="Eg. Apex Ultima exterior, light grey with white borders"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="imageFile">Select image</label>
+            <input id="imageFile" type="file" accept="image/*" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-row-inline">
+          <div id="imagePreviewBox" class="color-preview-box" style="background:#f1f1f1; color:#444;">
+            No image selected
+          </div>
+          <button id="btnSaveImage" class="btn-primary">
+            <span>Save image</span> <span>📤</span>
+          </button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modalColorSwatch" class="modal-color-swatch"></div>
+        <div style="font-size:11px;">
+          <strong>Segment:</strong> <span id="modalSegment"></span><br />
+          <strong>Shade code:</strong> <span id="modalCode"></span>
+        </div>
+        <div>
+          <strong>Notes:</strong>
+          <div id="modalDesc" style="margin-top:4px; white-space:pre-wrap;"></div>
+        </div>
+        <div class="card-actions">
+          <button id="modalCopyBtn" class="btn-ghost">Copy shade code</button>
+          <button id="modalDeleteBtn" class="btn-ghost small">Delete color</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div>
+      <strong>Sahu Paints House</strong> · Near you in Gonda · Professional colour guidance for your home.
+    </div>
+    <div>
+      All digital shades are indicative only. Please confirm with physical shade card before final order.
+    </div>
+  </footer>
+
+  <script>
+    // ===== DATA KEYS =====
+    const COLORS_KEY = "sahu_paints_colors_v1";
+    const IMAGES_KEY = "sahu_paints_images_v1";
+
+    let colors = [];
+    let images = [];
+    let activeFilter = "all";
+    let searchTerm = "";
+
+    let selectedColorIndex = null; // for modal
+
+    // ===== HELPERS: STORAGE =====
+    function loadData() {
+      try {
+        colors = JSON.parse(localStorage.getItem(COLORS_KEY) || "[]");
+        images = JSON.parse(localStorage.getItem(IMAGES_KEY) || "[]");
+      } catch (e) {
+        colors = [];
+        images = [];
+      }
+    }
+
+    function saveColors() {
+      localStorage.setItem(COLORS_KEY, JSON.stringify(colors));
+    }
+
+    function saveImages() {
+      localStorage.setItem(IMAGES_KEY, JSON.stringify(images));
+    }
+
+    // ===== RENDER COLORS =====
+    function renderColors() {
+      const grid = document.getElementById("colorsGrid");
+      const emptyMsg = document.getElementById("colorsEmptyMsg");
+      grid.innerHTML = "";
+
+      let filtered = colors.filter(c => {
+        const matchesFilter = activeFilter === "all" || c.segment === activeFilter;
+        const term = searchTerm.trim().toLowerCase();
+        const matchesSearch =
+          !term ||
+          (c.name && c.name.toLowerCase().includes(term)) ||
+          (c.code && c.code.toLowerCase().includes(term));
+        return matchesFilter && matchesSearch;
+      });
+
+      if (!filtered.length) {
+        emptyMsg.style.display = "block";
+        return;
+      } else {
+        emptyMsg.style.display = "none";
+      }
+
+      filtered.forEach((c, index) => {
+        const card = document.createElement("article");
+        card.className = "color-card";
+        card.dataset.index = colors.indexOf(c);
+
+        const swatch = document.createElement("div");
+        swatch.className = "color-swatch";
+        swatch.style.background = c.hex || "#cccccc";
+
+        const body = document.createElement("div");
+        body.className = "color-card-body";
+
+        const name = document.createElement("div");
+        name.className = "color-name";
+        name.textContent = c.name || "Unnamed shade";
+
+        const meta = document.createElement("div");
+        meta.className = "color-meta-row";
+
+        const tag = document.createElement("span");
+        tag.className = "tag-pill";
+        tag.textContent =
+          c.segment === "interior" ? "Interior" :
+          c.segment === "exterior" ? "Exterior" :
+          c.segment === "ceiling" ? "Ceiling" :
+          c.segment === "kids" ? "Kids room" :
+          "Other";
+
+        const code = document.createElement("span");
+        code.className = "code-pill";
+        code.textContent = c.code || c.hex;
+
+        meta.appendChild(tag);
+        meta.appendChild(code);
+
+        const actions = document.createElement("div");
+        actions.className = "card-actions";
+
+        const btnCopy = document.createElement("button");
+        btnCopy.className = "btn-ghost small";
+        btnCopy.textContent = "Copy code";
+        btnCopy.addEventListener("click", (e) => {
+          e.stopPropagation();
+          copyToClipboard(c.code || c.hex);
+        });
+
+        const btnDelete = document.createElement("button");
+        btnDelete.className = "btn-ghost small";
+        btnDelete.textContent = "Delete";
+        btnDelete.addEventListener("click", (e) => {
+          e.stopPropagation();
+          deleteColor(colors.indexOf(c));
+        });
+
+        actions.appendChild(btnCopy);
+        actions.appendChild(btnDelete);
+
+        body.appendChild(name);
+        body.appendChild(meta);
+        body.appendChild(actions);
+
+        card.appendChild(swatch);
+        card.appendChild(body);
+
+        card.addEventListener("click", () => openColorModal(colors.indexOf(c)));
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== RENDER IMAGES =====
+    function renderImages() {
+      const grid = document.getElementById("imagesGrid");
+      const emptyMsg = document.getElementById("imagesEmptyMsg");
+      grid.innerHTML = "";
+
+      if (!images.length) {
+        emptyMsg.style.display = "block";
+        return;
+      } else {
+        emptyMsg.style.display = "none";
+      }
+
+      images.forEach((img, index) => {
+        const card = document.createElement("article");
+        card.className = "image-card";
+
+        const wrap = document.createElement("div");
+        wrap.className = "image-wrapper";
+
+        const imageEl = document.createElement("img");
+        imageEl.src = img.data;
+        imageEl.alt = img.title || "Shop image";
+
+        wrap.appendChild(imageEl);
+
+        const body = document.createElement("div");
+        body.className = "image-card-body";
+
+        const title = document.createElement("div");
+        title.style.fontWeight = "500";
+        title.textContent = img.title || "Untitled image";
+
+        const desc = document.createElement("div");
+        desc.style.color = "var(--text-muted)";
+        desc.textContent = img.desc || "";
+
+        const loc = document.createElement("div");
+        loc.style.color = "var(--text-muted)";
+        loc.style.fontSize = "10px";
+        loc.textContent = img.area || "";
+
+        const actions = document.createElement("div");
+        actions.className = "card-actions";
+        const btnDelete = document.createElement("button");
+        btnDelete.className = "btn-ghost small";
+        btnDelete.textContent = "Delete";
+        btnDelete.addEventListener("click", () => deleteImage(index));
+        actions.appendChild(btnDelete);
+
+        body.appendChild(title);
+        body.appendChild(desc);
+        if (img.area) body.appendChild(loc);
+        body.appendChild(actions);
+
+        card.appendChild(wrap);
+        card.appendChild(body);
+
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== COPY TO CLIPBOARD =====
+    function copyToClipboard(text) {
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert("Copied: " + text);
+        }).catch(() => {
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert("Copied: " + text);
+    }
+
+    // ===== MODAL =====
+    function openColorModal(index) {
+      selectedColorIndex = index;
+      const c = colors[index];
+      if (!c) return;
+
+      document.getElementById("modalTitle").textContent = c.name || "Shade details";
+      document.getElementById("modalSegment").textContent =
+        c.segment === "interior" ? "Interior" :
+        c.segment === "exterior" ? "Exterior" :
+        c.segment === "ceiling" ? "Ceiling" :
+        c.segment === "kids" ? "Kids room" :
+        "Other";
+      document.getElementById("modalCode").textContent = c.code || c.hex;
+      document.getElementById("modalDesc").textContent = c.desc || "No notes added.";
+      const swatch = document.getElementById("modalColorSwatch");
+      swatch.style.background = c.hex || "#cccccc";
+
+      document.getElementById("modalBackdrop").style.display = "flex";
+    }
+
+    function closeColorModal() {
+      document.getElementById("modalBackdrop").style.display = "none";
+      selectedColorIndex = null;
+    }
+
+    // ===== DELETE =====
+    function deleteColor(index) {
+      if (!confirm("Delete this color permanently?")) return;
+      colors.splice(index, 1);
+      saveColors();
+      renderColors();
+      if (selectedColorIndex === index) closeColorModal();
+    }
+
+    function deleteImage(index) {
+      if (!confirm("Delete this image permanently?")) return;
+      images.splice(index, 1);
+      saveImages();
+      renderImages();
+    }
+
+    // ===== NAVIGATION =====
+    function setupNav() {
+      const navItems = document.querySelectorAll(".nav-item");
+      const sections = document.querySelectorAll("[data-section]");
+
+      navItems.forEach(item => {
+        item.addEventListener("click", () => {
+          navItems.forEach(n => n.classList.remove("active"));
+          item.classList.add("active");
+
+          const targetId = item.dataset.target;
+          sections.forEach(sec => {
+            sec.style.display = sec.id === targetId ? "block" : "none";
+          });
+        });
+      });
+    }
+
+    // ===== EVENTS SETUP =====
+    function setupFormsAndFilters() {
+      // color picker live preview
+      const colorHex = document.getElementById("colorHex");
+      const previewBox = document.getElementById("colorPreviewBox");
+      const previewText = document.getElementById("colorPreviewText");
+      colorHex.addEventListener("input", () => {
+        previewBox.style.background = colorHex.value;
+        previewText.textContent = colorHex.value;
+      });
+
+      // save color
+      document.getElementById("btnSaveColor").addEventListener("click", () => {
+        const name = document.getElementById("colorName").value.trim();
+        const code = document.getElementById("colorCode").value.trim();
+        const segment = document.getElementById("colorSegment").value;
+        const hex = document.getElementById("colorHex").value;
+        const desc = document.getElementById("colorDesc").value.trim();
+
+        if (!name) {
+          alert("Please enter a color name.");
+          return;
+        }
+
+        colors.push({ name, code, segment, hex, desc });
+        saveColors();
+        renderColors();
+
+        document.getElementById("colorName").value = "";
+        document.getElementById("colorCode").value = "";
+        document.getElementById("colorDesc").value = "";
+        alert("Color saved.");
+      });
+
+      // filter chips
+      document.querySelectorAll(".chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          activeFilter = chip.dataset.filter;
+          renderColors();
+        });
+      });
+
+      // search
+      document.getElementById("searchColors").addEventListener("input", (e) => {
+        searchTerm = e.target.value;
+        renderColors();
+      });
+
+      // image file preview + save
+      const imageFileInput = document.getElementById("imageFile");
+      const imagePreviewBox = document.getElementById("imagePreviewBox");
+      let imageDataTemp = null;
+
+      imageFileInput.addEventListener("change", () => {
+        const file = imageFileInput.files[0];
+        if (!file) {
+          imageDataTemp = null;
+          imagePreviewBox.textContent = "No image selected";
+          imagePreviewBox.style.background = "#f1f1f1";
+          imagePreviewBox.style.color = "#444";
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          imageDataTemp = e.target.result;
+          imagePreviewBox.textContent = "Preview ready";
+          imagePreviewBox.style.backgroundImage = "url(" + imageDataTemp + ")";
+          imagePreviewBox.style.backgroundSize = "cover";
+          imagePreviewBox.style.backgroundPosition = "center";
+          imagePreviewBox.style.color = "#ffffff";
+        };
+        reader.readAsDataURL(file);
+      });
+
+      document.getElementById("btnSaveImage").addEventListener("click", () => {
+        const title = document.getElementById("imageTitle").value.trim();
+        const area = document.getElementById("imageArea").value.trim();
+        const desc = document.getElementById("imageDesc").value.trim();
+
+        if (!imageDataTemp) {
+          alert("Please select an image first.");
+          return;
+        }
+
+        images.push({ title, area, desc, data: imageDataTemp });
+        saveImages();
+        renderImages();
+
+        document.getElementById("imageTitle").value = "";
+        document.getElementById("imageArea").value = "";
+        document.getElementById("imageDesc").value = "";
+        imageFileInput.value = "";
+        imageDataTemp = null;
+        imagePreviewBox.textContent = "No image selected";
+        imagePreviewBox.style.background = "#f1f1f1";
+        imagePreviewBox.style.color = "#444";
+
+        alert("Image saved.");
+      });
+
+      // modal buttons
+      document.getElementById("modalCloseBtn").addEventListener("click", closeColorModal);
+      document.getElementById("modalBackdrop").addEventListener("click", (e) => {
+        if (e.target.id === "modalBackdrop") closeColorModal();
+      });
+      document.getElementById("modalCopyBtn").addEventListener("click", () => {
+        if (selectedColorIndex == null) return;
+        const c = colors[selectedColorIndex];
+        copyToClipboard(c.code || c.hex);
+      });
+      document.getElementById("modalDeleteBtn").addEventListener("click", () => {
+        if (selectedColorIndex == null) return;
+        deleteColor(selectedColorIndex);
+        closeColorModal();
+      });
+    }
+
+    // ===== INIT =====
+    document.addEventListener("DOMContentLoaded", () => {
+      loadData();  // from localStorage [web:77]
+      setupNav();  // sidebar navigation [web:73]
+      setupFormsAndFilters();
+      renderColors();
+      renderImages();
+    });
+  </script>
 </body>
 </html>
