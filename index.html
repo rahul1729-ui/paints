@@ -650,6 +650,7 @@
             <label for="imageTitle">Title</label>
             <input id="imageTitle" class="form-control" placeholder="Eg. Front view, 2BHK exterior" />
           </div>
+                          <div class="form-group"><label for="imageSegment">Image Category</label><select id="imageSegment" class="form-select"><option value="interior">🏠 Interior</option><option value="exterior">🌳 Exterior</option><option value="ceiling">✨ Ceiling</option><option value="kids">🎨 Kids Room</option><option value="other">📌 Other</option></select></div>
           <div class="form-group">
             <label for="imageArea">Area / Location (optional)</label>
             <input id="imageArea" class="form-control" placeholder="Eg. Gonda, living room, exterior front" />
@@ -1060,13 +1061,14 @@
         const title = document.getElementById("imageTitle").value.trim();
         const area = document.getElementById("imageArea").value.trim();
         const desc = document.getElementById("imageDesc").value.trim();
+                    const segment = document.getElementById("imageSegment").value;
 
         if (!imageDataTemp) {
           alert("Please select an image first.");
           return;
         }
 
-        images.push({ title, area, desc, data: imageDataTemp });
+        images.push({ segment, title, area, desc, data: imageDataTemp });
         saveImages();
         renderImages();
 
