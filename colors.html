@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paint Color Palettes</title>
+    <title>Paint Color Gallery - Sahu Paints</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
+        .container { max-width: 1400px; margin: 0 auto; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
         .header h1 { font-size: 32px; display: flex; align-items: center; gap: 10px; }
         .back-btn { background: #0080ff; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; transition: background 0.3s; }
         .back-btn:hover { background: #0066cc; }
-        .subtitle { color: #aaa; margin-bottom: 20px; text-align: center; }
-        .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
-        .palette-card { background: #2a2a3e; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: transform 0.3s, box-shadow 0.3s; }
-        .palette-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
-        .palette-image { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 14px; color: rgba(255,255,255,0.7); cursor: pointer; position: relative; }
-        .palette-image img { width: 100%; height: 100%; object-fit: cover; }
-        .palette-title { padding: 15px; background: #222; font-size: 16px; font-weight: 600; }
-        .palette-colors { padding: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; }
-        .color-item { text-align: center; cursor: pointer; }
-        .color-swatch { width: 100%; height: 60px; border-radius: 6px; margin-bottom: 5px; border: 2px solid #444; transition: border-color 0.2s; }
-        .color-item:hover .color-swatch { border-color: #0080ff; }
-        .color-label { font-size: 11px; color: #aaa; font-weight: 500; }
-        .color-code { font-size: 10px; color: #777; font-family: monospace; }
-        .empty-msg { text-align: center; padding: 40px; color: #888; }
+        .subtitle { color: #aaa; margin-bottom: 20px; text-align: center; font-size: 16px; }
+        .segment-section { margin-bottom: 40px; }
+        .segment-title { font-size: 24px; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #0080ff; }
+        .segment-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+        @media (max-width: 1000px) { .segment-layout { grid-template-columns: 1fr; } }
+        .image-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+        .image-card { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.3s; }
+        .image-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+        .image-card img { width: 100%; height: 150px; object-fit: cover; }
+        .image-card-label { padding: 10px; background: #222; font-size: 12px; text-align: center; color: #aaa; }
+        .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
+        .palette-item { text-align: center; cursor: pointer; }
+        .color-swatch { width: 100%; height: 80px; border-radius: 8px; margin-bottom: 8px; border: 2px solid #444; transition: border-color 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .palette-item:hover .color-swatch { border-color: #0080ff; transform: scale(1.05); }
+        .palette-name { font-size: 12px; color: #aaa; font-weight: 500; margin-bottom: 3px; }
+        .palette-code { font-size: 10px; color: #777; font-family: monospace; }
+        .empty-msg { text-align: center; padding: 30px; color: #888; grid-column: 1 / -1; }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
         .modal-overlay.active { display: flex; }
         .modal { background: #2a2a3e; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
@@ -34,7 +37,7 @@
         .modal-close { background: none; border: none; color: #888; font-size: 24px; cursor: pointer; }
         .modal-close:hover { color: #fff; }
         .modal-body { padding: 20px; }
-        .color-item-detail { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 12px; background: #1a1a2e; border-radius: 6px; }
+        .color-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 12px; background: #1a1a2e; border-radius: 6px; }
         .color-info { display: flex; align-items: center; gap: 10px; flex: 1; }
         .color-detail-swatch { width: 40px; height: 40px; border-radius: 4px; border: 1px solid #444; }
         .color-detail-text { flex: 1; }
@@ -49,19 +52,20 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎨 Paint Color Palettes</h1>
+            <h1>🎨 Paint Color Gallery</h1>
             <a href="index.html" class="back-btn">← Back to Home</a>
         </div>
-        <div class="subtitle">Click on any card to view detailed colors and copy color codes</div>
-        <div id="paletteGrid" class="palette-grid"></div>
-        <div id="emptyMsg" class="empty-msg" style="display:none;">No palettes added yet. Go to Home and add colors to see them here!</div>
+        <div class="subtitle">Explore color palettes with beautiful interior & exterior references</div>
+        
+        <div id="galleryContainer"></div>
+        <div id="emptyMsg" class="empty-msg" style="display:none;">No colors or images added yet. Go to Home to add content!</div>
     </div>
 
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title" id="modalPaletteTitle">Palette</div>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <div class="modal-title" id="modalTitle">Colors</div>
+                <button class="modal-close" onclick="closeModal()">×</button>
             </div>
             <div class="modal-body" id="modalBody"></div>
         </div>
@@ -69,39 +73,45 @@
 
     <script>
         const COLORS_KEY = "sahu_paints_colors_v1";
+        const IMAGES_KEY = "sahu_paints_images_v1";
         let allColors = [];
+        let allImages = [];
 
-        function loadColors() {
+        function loadData() {
             try {
                 allColors = JSON.parse(localStorage.getItem(COLORS_KEY) || "[]");
+                allImages = JSON.parse(localStorage.getItem(IMAGES_KEY) || "[]");
             } catch (e) {
                 allColors = [];
+                allImages = [];
             }
         }
 
-        function groupColorsBySegment() {
+        function groupBySegment(data, key) {
             const groups = {};
-            allColors.forEach(color => {
-                const segment = color.segment || 'other';
+            data.forEach(item => {
+                const segment = item[key] || 'other';
                 if (!groups[segment]) groups[segment] = [];
-                groups[segment].push(color);
+                groups[segment].push(item);
             });
             return groups;
         }
 
-        function renderPalettes() {
-            const grid = document.getElementById('paletteGrid');
+        function renderGallery() {
+            const container = document.getElementById('galleryContainer');
             const emptyMsg = document.getElementById('emptyMsg');
             
-            grid.innerHTML = '';
+            container.innerHTML = '';
             
-            if (allColors.length === 0) {
+            if (allColors.length === 0 && allImages.length === 0) {
                 emptyMsg.style.display = 'block';
                 return;
             }
             emptyMsg.style.display = 'none';
             
-            const segments = groupColorsBySegment();
+            const colorGroups = groupBySegment(allColors, 'segment');
+            const imageGroups = groupBySegment(allImages, 'area');
+            
             const segmentNames = {
                 'interior': '🏠 Interior',
                 'exterior': '🌳 Exterior',
@@ -110,49 +120,91 @@
                 'other': '📌 Other'
             };
             
-            Object.keys(segments).forEach(segment => {
-                const colors = segments[segment];
-                const card = document.createElement('div');
-                card.className = 'palette-card';
+            const allSegments = new Set([...Object.keys(colorGroups), ...Object.keys(imageGroups)]);
+            
+            allSegments.forEach(segment => {
+                const colors = colorGroups[segment] || [];
+                const images = imageGroups[segment] || [];
                 
-                const image = document.createElement('div');
-                image.className = 'palette-image';
-                image.textContent = segmentNames[segment];
+                if (colors.length === 0 && images.length === 0) return;
+                
+                const section = document.createElement('div');
+                section.className = 'segment-section';
                 
                 const title = document.createElement('div');
-                title.className = 'palette-title';
-                title.textContent = segmentNames[segment];
+                title.className = 'segment-title';
+                title.textContent = segmentNames[segment] || segment;
+                section.appendChild(title);
                 
-                const colorsDiv = document.createElement('div');
-                colorsDiv.className = 'palette-colors';
+                const layout = document.createElement('div');
+                layout.className = 'segment-layout';
                 
-                colors.forEach(color => {
-                    const item = document.createElement('div');
-                    item.className = 'color-item';
-                    item.onclick = () => openModal(segment);
-                    
-                    const swatch = document.createElement('div');
-                    swatch.className = 'color-swatch';
-                    swatch.style.background = color.hex || '#ccc';
-                    
-                    const label = document.createElement('div');
-                    label.className = 'color-label';
-                    label.textContent = color.name || 'Unnamed';
-                    
-                    const code = document.createElement('div');
-                    code.className = 'color-code';
-                    code.textContent = color.code || color.hex;
-                    
-                    item.appendChild(swatch);
-                    item.appendChild(label);
-                    item.appendChild(code);
-                    colorsDiv.appendChild(item);
-                });
+                // Images column
+                const imagesCol = document.createElement('div');
+                imagesCol.className = 'image-gallery';
                 
-                card.appendChild(image);
-                card.appendChild(title);
-                card.appendChild(colorsDiv);
-                grid.appendChild(card);
+                if (images.length > 0) {
+                    images.forEach(img => {
+                        const card = document.createElement('div');
+                        card.className = 'image-card';
+                        
+                        const imgEl = document.createElement('img');
+                        imgEl.src = img.data;
+                        imgEl.alt = img.title;
+                        card.appendChild(imgEl);
+                        
+                        const label = document.createElement('div');
+                        label.className = 'image-card-label';
+                        label.textContent = img.title || 'Shop photo';
+                        card.appendChild(label);
+                        
+                        imagesCol.appendChild(card);
+                    });
+                } else {
+                    const placeholder = document.createElement('div');
+                    placeholder.style.cssText = 'color: #666; text-align: center; padding: 20px; grid-column: 1/-1;';
+                    placeholder.textContent = 'No reference images yet';
+                    imagesCol.appendChild(placeholder);
+                }
+                layout.appendChild(imagesCol);
+                
+                // Colors column
+                const colorsCol = document.createElement('div');
+                colorsCol.className = 'palette-grid';
+                
+                if (colors.length > 0) {
+                    colors.forEach(color => {
+                        const item = document.createElement('div');
+                        item.className = 'palette-item';
+                        item.onclick = () => openModal(segment);
+                        
+                        const swatch = document.createElement('div');
+                        swatch.className = 'color-swatch';
+                        swatch.style.background = color.hex || '#ccc';
+                        item.appendChild(swatch);
+                        
+                        const name = document.createElement('div');
+                        name.className = 'palette-name';
+                        name.textContent = color.name || 'Unnamed';
+                        item.appendChild(name);
+                        
+                        const code = document.createElement('div');
+                        code.className = 'palette-code';
+                        code.textContent = color.code || color.hex;
+                        item.appendChild(code);
+                        
+                        colorsCol.appendChild(item);
+                    });
+                } else {
+                    const placeholder = document.createElement('div');
+                    placeholder.style.cssText = 'color: #666; text-align: center; padding: 20px; grid-column: 1/-1;';
+                    placeholder.textContent = 'No colors added yet';
+                    colorsCol.appendChild(placeholder);
+                }
+                layout.appendChild(colorsCol);
+                
+                section.appendChild(layout);
+                container.appendChild(section);
             });
         }
 
@@ -166,17 +218,18 @@
                 'other': '📌 Other Colors'
             };
             
-            document.getElementById('modalPaletteTitle').textContent = segmentNames[segment];
+            document.getElementById('modalTitle').textContent = segmentNames[segment];
             
             let body = '';
             colors.forEach(color => {
                 body += `
-                    <div class="color-item-detail">
+                    <div class="color-item">
                         <div class="color-info">
                             <div class="color-detail-swatch" style="background: ${color.hex || '#ccc'};"></div>
                             <div class="color-detail-text">
                                 <div class="color-detail-name">${color.name || 'Unnamed'}</div>
                                 <div class="color-detail-code">${color.code || color.hex}</div>
+                                ${color.desc ? `<div style="font-size:10px;color:#999;margin-top:3px;">${color.desc}</div>` : ''}
                             </div>
                         </div>
                         <button class="copy-btn" onclick="copyToClipboard('${(color.code || color.hex).replace(/'/g, "\\'")}', this)">Copy</button>
@@ -197,16 +250,12 @@
                 const originalText = btn.textContent;
                 btn.textContent = '✓ Copied';
                 btn.style.background = '#28a745';
-                
                 showToast(`Copied: ${text}`);
-                
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.background = '';
                 }, 2000);
-            }).catch(err => {
-                alert('Failed to copy');
-            });
+            }).catch(() => alert('Failed to copy')); }
         }
 
         function showToast(message) {
@@ -214,10 +263,7 @@
             toast.className = 'toast';
             toast.textContent = message;
             document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
+            setTimeout(() => toast.remove(), 3000);
         }
 
         document.getElementById('modalOverlay').addEventListener('click', (e) => {
@@ -225,14 +271,14 @@
         });
 
         // Initialize
-        loadColors();
-        renderPalettes();
+        loadData();
+        renderGallery();
 
-        // Listen for storage changes (when user adds colors in another tab)
+        // Listen for storage changes
         window.addEventListener('storage', (e) => {
-            if (e.key === COLORS_KEY) {
-                loadColors();
-                renderPalettes();
+            if (e.key === COLORS_KEY || e.key === IMAGES_KEY) {
+                loadData();
+                renderGallery();
             }
         });
     </script>
