@@ -5,626 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paint Color Palettes</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            color: #fff;
-            margin-bottom: 50px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: #ccc;
-            font-size: 1.1rem;
-        }
-
-        .color-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .color-card {
-            background: #2a2a3e;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .color-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-image {
-            position: relative;
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            background: #1a1a2e;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .color-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.3) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .card-style-label {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-        }
-
-        .card-palette {
-            padding: 25px;
-        }
-
-        .palette-colors {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .color-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            transition: background 0.2s ease;
-        }
-
-        .color-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .color-swatch {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .color-info {
-            flex: 1;
-        }
-
-        .color-name {
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .color-code {
-            color: #aaa;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .copy-btn {
-            background: #4a9eff;
-            color: #fff;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            flex-shrink: 0;
-        }
-
-        .copy-btn:hover {
-            background: #3a8eef;
-        }
-
-        .copy-btn.copied {
-            background: #4caf50;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: #2a2a3e;
-            border-radius: 16px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            position: relative;
-            padding: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            color: #fff;
-            font-size: 1.5rem;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: #aaa;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .modal-close:hover {
-            color: #fff;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            position: relative;
-        }
-
-        .modal-image-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.4) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .modal-palette {
-            padding: 30px;
-        }
-
-        .modal-palette-title {
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .modal-color-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-bottom: 12px;
-            transition: background 0.2s ease;
-        }
-
-        .modal-color-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-color-swatch {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-color-info {
-            flex: 1;
-        }
-
-        .modal-color-name {
-            color: #fff;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 4px;
-        }
-
-        .modal-color-code {
-            color: #aaa;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .modal-copy-btn {
-            background: #4a9eff;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .modal-copy-btn:hover {
-            background: #3a8eef;
-        }
-
-        .modal-copy-btn.copied {
-            background: #4caf50;
-        }
-
-        .modal-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .modal-content::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-content::-webkit-scrollbar-thumb {
-            background: #4a9eff;
-            border-radius: 4px;
-        }
-
-        .modal-content::-webkit-scrollbar-thumb:hover {
-            background: #3a8eef;
-        }
-
-        
-        /* Fullscreen Image Viewer */
-        .fullscreen-image-viewer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .fullscreen-image-viewer.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .fullscreen-image-container {
-            position: relative;
-            width: 90%;
-            height: 90%;
-            max-width: 1200px;
-            max-height: 800px;
-        }
-
-        .fullscreen-image-viewer img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transform-origin: center;
-            transition: transform 0.2s ease;
-            cursor: zoom-in;
-        }
-
-        .fullscreen-image-viewer img.zoomed {
-            cursor: zoom-out;
-        }
-
-        .fullscreen-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            background: #fff;
-            color: #000;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 2001;
-            transition: background 0.2s ease;
-        }
-
-        .fullscreen-close-btn:hover {
-            background: #ddd;
-        }
-
-        .fullscreen-zoom-info {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-        }
-        @media (max-width: 768px) {
-            .color-cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .modal-content {
-                max-height: 95vh;
-            }
-
-            .card-image {
-                height: 200px;
-            }
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #4caf50;
-            color: #fff;
-            padding: 16px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 2000;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
+        .header h1 { font-size: 32px; display: flex; align-items: center; gap: 10px; }
+        .back-btn { background: #0080ff; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; transition: background 0.3s; }
+        .back-btn:hover { background: #0066cc; }
+        .subtitle { color: #aaa; margin-bottom: 20px; text-align: center; }
+        .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .palette-card { background: #2a2a3e; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: transform 0.3s, box-shadow 0.3s; }
+        .palette-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+        .palette-image { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 14px; color: rgba(255,255,255,0.7); cursor: pointer; position: relative; }
+        .palette-image img { width: 100%; height: 100%; object-fit: cover; }
+        .palette-title { padding: 15px; background: #222; font-size: 16px; font-weight: 600; }
+        .palette-colors { padding: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; }
+        .color-item { text-align: center; cursor: pointer; }
+        .color-swatch { width: 100%; height: 60px; border-radius: 6px; margin-bottom: 5px; border: 2px solid #444; transition: border-color 0.2s; }
+        .color-item:hover .color-swatch { border-color: #0080ff; }
+        .color-label { font-size: 11px; color: #aaa; font-weight: 500; }
+        .color-code { font-size: 10px; color: #777; font-family: monospace; }
+        .empty-msg { text-align: center; padding: 40px; color: #888; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: #2a2a3e; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #444; background: #1a1a2e; }
+        .modal-title { font-size: 18px; font-weight: 600; }
+        .modal-close { background: none; border: none; color: #888; font-size: 24px; cursor: pointer; }
+        .modal-close:hover { color: #fff; }
+        .modal-body { padding: 20px; }
+        .color-item-detail { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 12px; background: #1a1a2e; border-radius: 6px; }
+        .color-info { display: flex; align-items: center; gap: 10px; flex: 1; }
+        .color-detail-swatch { width: 40px; height: 40px; border-radius: 4px; border: 1px solid #444; }
+        .color-detail-text { flex: 1; }
+        .color-detail-name { font-size: 13px; color: #aaa; }
+        .color-detail-code { font-size: 12px; color: #0080ff; font-family: monospace; font-weight: 600; }
+        .copy-btn { background: #0080ff; border: none; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: background 0.2s; }
+        .copy-btn:hover { background: #0066cc; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: #28a745; color: white; padding: 12px 20px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2000; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-                        <a href="index.html" style="position: absolute; top: 20px; left: 20px; background: #4a9eff; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">← Back to Home</a>
             <h1>🎨 Paint Color Palettes</h1>
-            <p>Click on any card to view detailed colors and copy color codes</p>
+            <a href="index.html" class="back-btn">← Back to Home</a>
         </div>
-
-        <div class="color-cards-grid" id="colorCardsGrid"></div>
+        <div class="subtitle">Click on any card to view detailed colors and copy color codes</div>
+        <div id="paletteGrid" class="palette-grid"></div>
+        <div id="emptyMsg" class="empty-msg" style="display:none;">No palettes added yet. Go to Home and add colors to see them here!</div>
     </div>
 
-    <div class="modal-overlay" id="colorModal">
-        <div class="modal-content">
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
             <div class="modal-header">
-                <h2>Color Details</h2>
-                <button class="modal-close" id="modalClose">&times;</button>
+                <div class="modal-title" id="modalPaletteTitle">Palette</div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
-            <div class="modal-image-container">
-                <img class="modal-image" id="modalImage" src="" alt="House color scheme">
-                <div class="modal-image-overlay"></div>
-            </div>
-            <div class="modal-palette">
-                <div class="modal-palette-title" id="modalStyleLabel"></div>
-                <div id="modalColorsContainer"></div>
-            </div>
+            <div class="modal-body" id="modalBody"></div>
         </div>
-        
-    <!-- Fullscreen Image Viewer -->
-    <div class="fullscreen-image-viewer" id="fullscreenImageViewer">
-        <div class="fullscreen-image-container">
-            <button class="fullscreen-close-btn" id="fullscreenCloseBtn">×</button>
-            <img id="fullscreenImage" src="" alt="Fullscreen view" />
-            <div class="fullscreen-zoom-info" id="zoomInfo" style="display: none;">Scroll to zoom | Click to toggle zoom</div>
-        </div>
-    </div>
     </div>
 
     <script>
-        const colorPalettes = [
-            {
-                id: 1,
-                style: "Modern",
-                image: "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=600&h=400&fit=crop",
-                colors: [
-                    { name: "Main Wall", code: "#E8F4FD" },
-                    { name: "Trim", code: "#FFFFFF" },
-                    { name: "Door", code: "#2C3E50" }
-                ]
-            },
-            {
-                id: 2,
-                style: "Traditional",
-                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop",
-                colors: [
-                    { name: "Main Wall", code: "#F5E6D3" },
-                    { name: "Trim", code: "#8B4513" },
-                    { name: "Roof", code: "#A0522D" }
-                ]
-            },
-            {
-                id: 3,
-                style: "Contemporary",
-                image: "https://images.unsplash.com/photo-1545932490-d27e3b418a34?w=600&h=400&fit=crop",
-                colors: [
-                    { name: "Main Wall", code: "#F0F8FF" },
-                    { name: "Accent", code: "#4682B4" },
-                    { name: "Door", code: "#191970" }
-                ]
-            },
-            {
-                id: 4,
-                style: "Colonial",
-                image: "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=600&h=400&fit=crop",
-                colors: [
-                    { name: "Main Wall", code: "#FFFACD" },
-                    { name: "Shutters", code: "#228B22" },
-                    { name: "Door", code: "#DC143C" }
-                ]
+        const COLORS_KEY = "sahu_paints_colors_v1";
+        let allColors = [];
+
+        function loadColors() {
+            try {
+                allColors = JSON.parse(localStorage.getItem(COLORS_KEY) || "[]");
+            } catch (e) {
+                allColors = [];
             }
-        ];
+        }
 
-        function generateColorCards() {
-            const grid = document.getElementById('colorCardsGrid');
+        function groupColorsBySegment() {
+            const groups = {};
+            allColors.forEach(color => {
+                const segment = color.segment || 'other';
+                if (!groups[segment]) groups[segment] = [];
+                groups[segment].push(color);
+            });
+            return groups;
+        }
+
+        function renderPalettes() {
+            const grid = document.getElementById('paletteGrid');
+            const emptyMsg = document.getElementById('emptyMsg');
+            
             grid.innerHTML = '';
-
-            colorPalettes.forEach((palette) => {
+            
+            if (allColors.length === 0) {
+                emptyMsg.style.display = 'block';
+                return;
+            }
+            emptyMsg.style.display = 'none';
+            
+            const segments = groupColorsBySegment();
+            const segmentNames = {
+                'interior': '🏠 Interior',
+                'exterior': '🌳 Exterior',
+                'ceiling': '✨ Ceiling',
+                'kids': '🎨 Kids Room',
+                'other': '📌 Other'
+            };
+            
+            Object.keys(segments).forEach(segment => {
+                const colors = segments[segment];
                 const card = document.createElement('div');
-                card.className = 'color-card';
-                card.onclick = () => openModal(palette);
-
-                let colorsHTML = '';
-                palette.colors.forEach(color => {
-                    colorsHTML += `
-                        <div class="color-item">
-                            <div class="color-swatch" style="background-color: ${color.code}"></div>
-                            <div class="color-info">
-                                <span class="color-name">${color.name}</span>
-                                <span class="color-code">${color.code}</span>
-                            <button class="copy-btn" onclick="copyToClipboard('${color.code}')">Copy</button>
-                        </div>
-                    `;
+                card.className = 'palette-card';
+                
+                const image = document.createElement('div');
+                image.className = 'palette-image';
+                image.textContent = segmentNames[segment];
+                
+                const title = document.createElement('div');
+                title.className = 'palette-title';
+                title.textContent = segmentNames[segment];
+                
+                const colorsDiv = document.createElement('div');
+                colorsDiv.className = 'palette-colors';
+                
+                colors.forEach(color => {
+                    const item = document.createElement('div');
+                    item.className = 'color-item';
+                    item.onclick = () => openModal(segment);
+                    
+                    const swatch = document.createElement('div');
+                    swatch.className = 'color-swatch';
+                    swatch.style.background = color.hex || '#ccc';
+                    
+                    const label = document.createElement('div');
+                    label.className = 'color-label';
+                    label.textContent = color.name || 'Unnamed';
+                    
+                    const code = document.createElement('div');
+                    code.className = 'color-code';
+                    code.textContent = color.code || color.hex;
+                    
+                    item.appendChild(swatch);
+                    item.appendChild(label);
+                    item.appendChild(code);
+                    colorsDiv.appendChild(item);
                 });
-
-                card.innerHTML = `
-                    <div class="card-image""
-                        <img src="${palette.image}" alt="House color scheme">
-                        <div class="image-overlay"></div>
-                        <div class="card-style-label">${palette.style}</div>
-                    </div>
-                    <div class="card-palette">
-                        <div class="palette-colors">
-                            ${colorsHTML}
-                        </div>
-                    </div>
-                `;
+                
+                card.appendChild(image);
+                card.appendChild(title);
+                card.appendChild(colorsDiv);
                 grid.appendChild(card);
             });
         }
 
-        function openModal(palette) {
-            const modal = document.getElementById('colorModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalStyleLabel = document.getElementById('modalStyleLabel');
-            const modalColorsContainer = document.getElementById('modalColorsContainer');
-
-            modalImage.src = palette.image;
-            modalStyleLabel.textContent = palette.style + ' Color Scheme';
-            modalColorsContainer.innerHTML = '';
-
-            palette.colors.forEach(color => {
-                const colorItem = document.createElement('div');
-                colorItem.className = 'modal-color-item';
-                colorItem.innerHTML = `
-                    <div class="modal-color-swatch" style="background-color: ${color.code}"></div>
-                    <div class="modal-color-info">
-                        <div class="modal-color-name">${color.name}</div>
-                        <div class="modal-color-code">${color.code}</div>
+        function openModal(segment) {
+            const colors = allColors.filter(c => (c.segment || 'other') === segment);
+            const segmentNames = {
+                'interior': '🏠 Interior Colors',
+                'exterior': '🌳 Exterior Colors',
+                'ceiling': '✨ Ceiling Colors',
+                'kids': '🎨 Kids Room Colors',
+                'other': '📌 Other Colors'
+            };
+            
+            document.getElementById('modalPaletteTitle').textContent = segmentNames[segment];
+            
+            let body = '';
+            colors.forEach(color => {
+                body += `
+                    <div class="color-item-detail">
+                        <div class="color-info">
+                            <div class="color-detail-swatch" style="background: ${color.hex || '#ccc'};"></div>
+                            <div class="color-detail-text">
+                                <div class="color-detail-name">${color.name || 'Unnamed'}</div>
+                                <div class="color-detail-code">${color.code || color.hex}</div>
+                            </div>
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard('${(color.code || color.hex).replace(/'/g, "\\'")}', this)">Copy</button>
                     </div>
-                    <button class="modal-copy-btn" onclick="copyToClipboard('${color.code}')">Copy</button>
                 `;
-                modalColorsContainer.appendChild(colorItem);
             });
-
-            modal.classList.add('active');
+            
+            document.getElementById('modalBody').innerHTML = body;
+            document.getElementById('modalOverlay').classList.add('active');
         }
 
         function closeModal() {
-            const modal = document.getElementById('colorModal');
-            modal.classList.remove('active');
+            document.getElementById('modalOverlay').classList.remove('active');
         }
 
-        function copyToClipboard(text) {
+        function copyToClipboard(text, btn) {
             navigator.clipboard.writeText(text).then(() => {
-                showToast(text + ' copied!');
-            }).catch(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied';
+                btn.style.background = '#28a745';
+                
+                showToast(`Copied: ${text}`);
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(err => {
                 alert('Failed to copy');
             });
         }
@@ -634,77 +214,27 @@
             toast.className = 'toast';
             toast.textContent = message;
             document.body.appendChild(toast);
+            
             setTimeout(() => {
                 toast.remove();
-            }, 2000);
-        }
-        
-        let currentZoom = 1;
-        let isZoomed = false;
-
-        function openFullscreenImage(imageSrc) {
-            const viewer = document.getElementById('fullscreenImageViewer');
-            const fullscreenImg = document.getElementById('fullscreenImage');
-            fullscreenImg.src = imageSrc;
-            viewer.classList.add('active');
-            currentZoom = 1;
-            isZoomed = false;
-            fullscreenImg.classList.remove('zoomed');
-            fullscreenImg.style.transform = 'scale(1)';
-            document.getElementById('zoomInfo').style.display = 'block';
+            }, 3000);
         }
 
-        function closeFullscreenImage() {
-            const viewer = document.getElementById('fullscreenImageViewer');
-            viewer.classList.remove('active');
-            currentZoom = 1;
-            isZoomed = false;
-        }
-
-        function handleImageZoom(event) {
-            if (event.type === 'wheel') {
-                event.preventDefault();
-                const fullscreenImg = document.getElementById('fullscreenImage');
-                const zoomSpeed = 0.1;
-                if (event.deltaY < 0) {
-                    currentZoom += zoomSpeed;
-                } else {
-                    currentZoom = Math.max(1, currentZoom - zoomSpeed);
-                }
-                fullscreenImg.style.transform = `scale(${currentZoom})`;
-                if (currentZoom > 1) {
-                    isZoomed = true;
-                    fullscreenImg.classList.add('zoomed');
-                } else {
-                    isZoomed = false;
-                    fullscreenImg.classList.remove('zoomed');
-                }
-            } else if (event.type === 'click' && event.target.id === 'fullscreenImage') {
-                const fullscreenImg = document.getElementById('fullscreenImage');
-                if (isZoomed) {
-                    currentZoom = 1;
-                    isZoomed = false;
-                    fullscreenImg.classList.remove('zoomed');
-                } else {
-                    currentZoom = 2;
-                    isZoomed = true;
-                    fullscreenImg.classList.add('zoomed');
-                }
-                fullscreenImg.style.transform = `scale(${currentZoom})`;
-            }
-        }
-
-        // Add fullscreen viewer event listeners
-        document.getElementById('fullscreenCloseBtn').addEventListener('click', closeFullscreenImage);
-        document.getElementById('fullscreenImageViewer').addEventListener('wheel', handleImageZoom, { passive: false });
-        document.getElementById('fullscreenImage').addEventListener('click', handleImageZoom);
-
-        document.getElementById('modalClose').addEventListener('click', closeModal);
-        document.getElementById('colorModal').addEventListener('click', (e) => {
-            if (e.target.id === 'colorModal') closeModal();
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target.id === 'modalOverlay') closeModal();
         });
 
-        generateColorCards();
+        // Initialize
+        loadColors();
+        renderPalettes();
+
+        // Listen for storage changes (when user adds colors in another tab)
+        window.addEventListener('storage', (e) => {
+            if (e.key === COLORS_KEY) {
+                loadColors();
+                renderPalettes();
+            }
+        });
     </script>
 </body>
 </html>
