@@ -351,6 +351,82 @@
             background: #3a8eef;
         }
 
+        
+        /* Fullscreen Image Viewer */
+        .fullscreen-image-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .fullscreen-image-viewer.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .fullscreen-image-container {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            max-width: 1200px;
+            max-height: 800px;
+        }
+
+        .fullscreen-image-viewer img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform-origin: center;
+            transition: transform 0.2s ease;
+            cursor: zoom-in;
+        }
+
+        .fullscreen-image-viewer img.zoomed {
+            cursor: zoom-out;
+        }
+
+        .fullscreen-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: #fff;
+            color: #000;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2001;
+            transition: background 0.2s ease;
+        }
+
+        .fullscreen-close-btn:hover {
+            background: #ddd;
+        }
+
+        .fullscreen-zoom-info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
         @media (max-width: 768px) {
             .color-cards-grid {
                 grid-template-columns: 1fr;
@@ -420,6 +496,15 @@
                 <div id="modalColorsContainer"></div>
             </div>
         </div>
+        
+    <!-- Fullscreen Image Viewer -->
+    <div class="fullscreen-image-viewer" id="fullscreenImageViewer">
+        <div class="fullscreen-image-container">
+            <button class="fullscreen-close-btn" id="fullscreenCloseBtn">×</button>
+            <img id="fullscreenImage" src="" alt="Fullscreen view" />
+            <div class="fullscreen-zoom-info" id="zoomInfo" style="display: none;">Scroll to zoom | Click to toggle zoom</div>
+        </div>
+    </div>
     </div>
 
     <script>
@@ -489,7 +574,7 @@
                 });
 
                 card.innerHTML = `
-                    <div class="card-image">
+                    <div class="card-image"" onclick="openFullscreenImage('${palette.image}')" style="cursor: pointer;>
                         <img src="${palette.image}" alt="House color scheme">
                         <div class="image-overlay"></div>
                         <div class="card-style-label">${palette.style}</div>
@@ -553,6 +638,66 @@
                 toast.remove();
             }, 2000);
         }
+        
+        let currentZoom = 1;
+        let isZoomed = false;
+
+        function openFullscreenImage(imageSrc) {
+            const viewer = document.getElementById('fullscreenImageViewer');
+            const fullscreenImg = document.getElementById('fullscreenImage');
+            fullscreenImg.src = imageSrc;
+            viewer.classList.add('active');
+            currentZoom = 1;
+            isZoomed = false;
+            fullscreenImg.classList.remove('zoomed');
+            fullscreenImg.style.transform = 'scale(1)';
+            document.getElementById('zoomInfo').style.display = 'block';
+        }
+
+        function closeFullscreenImage() {
+            const viewer = document.getElementById('fullscreenImageViewer');
+            viewer.classList.remove('active');
+            currentZoom = 1;
+            isZoomed = false;
+        }
+
+        function handleImageZoom(event) {
+            if (event.type === 'wheel') {
+                event.preventDefault();
+                const fullscreenImg = document.getElementById('fullscreenImage');
+                const zoomSpeed = 0.1;
+                if (event.deltaY < 0) {
+                    currentZoom += zoomSpeed;
+                } else {
+                    currentZoom = Math.max(1, currentZoom - zoomSpeed);
+                }
+                fullscreenImg.style.transform = `scale(${currentZoom})`;
+                if (currentZoom > 1) {
+                    isZoomed = true;
+                    fullscreenImg.classList.add('zoomed');
+                } else {
+                    isZoomed = false;
+                    fullscreenImg.classList.remove('zoomed');
+                }
+            } else if (event.type === 'click' && event.target.id === 'fullscreenImage') {
+                const fullscreenImg = document.getElementById('fullscreenImage');
+                if (isZoomed) {
+                    currentZoom = 1;
+                    isZoomed = false;
+                    fullscreenImg.classList.remove('zoomed');
+                } else {
+                    currentZoom = 2;
+                    isZoomed = true;
+                    fullscreenImg.classList.add('zoomed');
+                }
+                fullscreenImg.style.transform = `scale(${currentZoom})`;
+            }
+        }
+
+        // Add fullscreen viewer event listeners
+        document.getElementById('fullscreenCloseBtn').addEventListener('click', closeFullscreenImage);
+        document.getElementById('fullscreenImageViewer').addEventListener('wheel', handleImageZoom, { passive: false });
+        document.getElementById('fullscreenImage').addEventListener('click', handleImageZoom);
 
         document.getElementById('modalClose').addEventListener('click', closeModal);
         document.getElementById('colorModal').addEventListener('click', (e) => {
