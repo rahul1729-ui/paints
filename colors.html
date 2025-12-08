@@ -1,10 +1,112 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Paint Color Gallery - Sahu Paints</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Poppins',system-ui;background:linear-gradient(135deg,#0f172e 0%,#1a1f3a 100%);color:#fff;min-height:100vh}.container{max-width:1400px;margin:0 auto;padding:20px}.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(198,40,40,0.1));padding:24px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.3);backdrop-filter:blur(10px)}.header h1{font-size:32px;display:flex;align-items:center;gap:12px;color:#222}.back-btn{background:linear-gradient(135deg,#c62828,#a02020);color:white;border:none;padding:12px 24px;border-radius:999px;cursor:pointer;font-size:13px;transition:all 0.3s;box-shadow:0 10px 30px rgba(198,40,40,0.4)}.back-btn:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(198,40,40,0.6)}.subtitle{color:#aaa;margin-bottom:20px;text-align:center;font-size:15px;letter-spacing:0.5px}.tabs{display:flex;gap:10px;margin-bottom:24px;padding:12px;background:rgba(255,255,255,0.08);border-radius:14px;border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px)}.tab-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#aaa;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;transition:all 0.3s}.tab-btn.active{background:linear-gradient(135deg,#c62828,#a02020);color:white;border-color:#c62828;box-shadow:0 10px 30px rgba(198,40,40,0.4)}.tab-content{display:none}.tab-content.active{display:block}.filter-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}.chip{padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);font-size:12px;background:rgba(255,255,255,0.08);color:#aaa;cursor:pointer;transition:all 0.3s;backdrop-filter:blur(10px)}.chip:hover{border-color:rgba(198,40,40,0.5);color:#fff}.chip.active{background:linear-gradient(135deg,#c62828,#a02020);color:white;border-color:#c62828;box-shadow:0 8px 20px rgba(198,40,40,0.4)}.search-input{flex:1;min-width:180px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);padding:10px 14px;font-size:13px;outline:none;background:rgba(255,255,255,0.08);color:#fff;transition:all 0.3s;backdrop-filter:blur(10px)}.search-input::placeholder{color:#777}.search-input:focus{border-color:#c62828;background:rgba(255,255,255,0.12);box-shadow:0 0 20px rgba(198,40,40,0.3)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}.section-title{font-size:18px;font-weight:600;margin-top:24px;margin-bottom:12px;color:#fff;padding-bottom:8px;border-bottom:2px solid rgba(198,40,40,0.5)}.color-card{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:all 0.3s;cursor:pointer;backdrop-filter:blur(10px)}.color-card:hover{transform:translateY(-4px);border-color:rgba(198,40,40,0.5);box-shadow:0 15px 40px rgba(198,40,40,0.3)}.color-swatch{height:100px;background:#ccc}.color-card-body{padding:12px;display:flex;flex-direction:column;gap:4px}.color-name{font-size:14px;font-weight:600;color:#fff}.color-code{font-size:11px;color:#aaa;font-family:monospace}.image-card{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:all 0.3s;cursor:pointer;backdrop-filter:blur(10px)}.image-card:hover{transform:translateY(-4px);border-color:rgba(198,40,40,0.5);box-shadow:0 15px 40px rgba(198,40,40,0.3)}.image-wrapper{position:relative;width:100%;padding-top:70%;overflow:hidden}.image-wrapper img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform 0.3s}.image-card:hover .image-wrapper img{transform:scale(1.05)}.image-body{padding:12px;display:flex;flex-direction:column;gap:4px;font-size:12px;color:#aaa}.image-body strong{color:#fff;display:block;margin-bottom:4px}.empty-msg{text-align:center;padding:40px;color:#666;grid-column:1/-1;font-size:15px}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(5px)}.modal.active{display:flex}.modal-content{position:relative;max-width:90%;max-height:90%;background:#1a1f3a;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 25px 50px rgba(0,0,0,0.7)}.modal-image{max-width:100%;max-height:100%;object-fit:contain}.modal-close{position:absolute;top:16px;right:16px;background:rgba(0,0,0,0.6);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;transition:all 0.3s;backdrop-filter:blur(10px)}.modal-close:hover{background:#c62828;transform:rotate(90deg)}.modal-info{padding:20px;color:#aaa;font-size:13px;border-top:1px solid rgba(255,255,255,0.1)}.modal-info strong{color:#fff;display:block;margin-bottom:4px}
-</style></head><body><div class="container"><div class="header"><h1>🎨 Paint Color Gallery</h1><a href="index.html" class="back-btn">← Back to Home</a></div><div class="subtitle">Explore color palettes with beautiful interior & exterior references</div><div class="tabs"><button class="tab-btn active" onclick="switchTab('colors')">🎨 Color Gallery</button><button class="tab-btn" onclick="switchTab('gallery')">🖼️ Shop Gallery</button></div><div id="colors" class="tab-content active"><div id="colorGallery"></div><div id="colorEmptyMsg" class="empty-msg" style="display:none;">No colors added yet. Go to Home to add content!</div></div><div id="gallery" class="tab-content"><div class="filter-row"><div class="chip active" data-filter="all" onclick="filterShopGallery(this)">All</div><div class="chip" data-filter="interior" onclick="filterShopGallery(this)">🏠 Interior</div><div class="chip" data-filter="exterior" onclick="filterShopGallery(this)">🌳 Exterior</div><div class="chip" data-filter="ceiling" onclick="filterShopGallery(this)">✨ Ceiling</div><div class="chip" data-filter="kids" onclick="filterShopGallery(this)">🎨 Kids room</div><input type="text" id="shopSearch" class="search-input" placeholder="Search images..." oninput="filterShopGallery()"></div><div id="shopGallery" class="grid"></div><div id="shopEmptyMsg" class="empty-msg" style="display:none;">No images added yet. Upload from Home!</div></div></div><div id="imageModal" class="modal"><div class="modal-content"><button class="modal-close" onclick="closeImageModal()">×</button><img id="modalImage" class="modal-image" src="" alt=""><div class="modal-info"><strong id="modalTitle"></strong><div id="modalDesc"></div></div></div></div><script>const COLORS_KEY="sahu_paints_colors_v1";const IMAGES_KEY="sahu_paints_images_v1";let allColors=[];let allImages=[];let currentShopFilter='all';let currentShopSearch='';function loadData(){try{allColors=JSON.parse(localStorage.getItem(COLORS_KEY)||"[]");allImages=JSON.parse(localStorage.getItem(IMAGES_KEY)||"[]");}catch(e){allColors=[];allImages=[];}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paint Color Gallery - Sahu Paints</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',system-ui;background:linear-gradient(135deg,#0f172e 0%,#1a1f3a 100%);color:#fff;min-height:100vh}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(198,40,40,0.1));padding:24px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.3);backdrop-filter:blur(10px)}
+.header h1{font-size:32px;display:flex;align-items:center;gap:12px;color:#222}
+.back-btn{background:linear-gradient(135deg,#c62828,#a02020);color:white;border:none;padding:12px 24px;border-radius:999px;cursor:pointer;font-size:13px;transition:all 0.3s;box-shadow:0 10px 30px rgba(198,40,40,0.4)}
+.back-btn:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(198,40,40,0.6)}
+.subtitle{color:#aaa;margin-bottom:20px;text-align:center;font-size:15px;letter-spacing:0.5px}
+.tabs{display:flex;gap:10px;margin-bottom:24px;padding:12px;background:rgba(255,255,255,0.08);border-radius:14px;border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px)}
+.tab-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#aaa;padding:10px 20px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;transition:all 0.3s}
+.tab-btn.active{background:linear-gradient(135deg,#c62828,#a02020);color:white;border-color:#c62828;box-shadow:0 10px 30px rgba(198,40,40,0.4)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.filter-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.chip{padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);font-size:12px;background:rgba(255,255,255,0.08);color:#aaa;cursor:pointer;transition:all 0.3s;backdrop-filter:blur(10px)}
+.chip:hover{border-color:rgba(198,40,40,0.5);color:#fff}
+.chip.active{background:linear-gradient(135deg,#c62828,#a02020);color:white;border-color:#c62828;box-shadow:0 8px 20px rgba(198,40,40,0.4)}
+.search-input{flex:1;min-width:180px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);padding:10px 14px;font-size:13px;outline:none;background:rgba(255,255,255,0.08);color:#fff;transition:all 0.3s;backdrop-filter:blur(10px)}
+.search-input::placeholder{color:#777}
+.search-input:focus{border-color:#c62828;background:rgba(255,255,255,0.12);box-shadow:0 0 20px rgba(198,40,40,0.3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.section-title{font-size:18px;font-weight:600;margin-top:24px;margin-bottom:12px;color:#fff;padding-bottom:8px;border-bottom:2px solid rgba(198,40,40,0.5)}
+.color-card{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:all 0.3s;cursor:pointer;backdrop-filter:blur(10px)}
+.color-card:hover{transform:translateY(-4px);border-color:rgba(198,40,40,0.5);box-shadow:0 15px 40px rgba(198,40,40,0.3)}
+.color-swatch{height:100px;background:#ccc}
+.color-card-body{padding:12px;display:flex;flex-direction:column;gap:4px}
+.color-name{font-size:14px;font-weight:600;color:#fff;word-wrap:break-word;overflow-wrap:break-word}
+.color-code{font-size:11px;color:#aaa;font-family:monospace;word-wrap:break-word}
+.image-card{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:all 0.3s;cursor:pointer;backdrop-filter:blur(10px)}
+.image-card:hover{transform:translateY(-4px);border-color:rgba(198,40,40,0.5);box-shadow:0 15px 40px rgba(198,40,40,0.3)}
+.image-wrapper{position:relative;width:100%;padding-top:70%;overflow:hidden}
+.image-wrapper img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
+.image-card:hover .image-wrapper img{transform:scale(1.05)}
+.image-body{padding:12px;display:flex;flex-direction:column;gap:4px;font-size:12px;color:#aaa;max-height:200px;overflow-y:auto}
+.image-body strong{color:#fff;display:block;margin-bottom:4px}
+.shades-list{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.2);font-size:10px}
+.shade-item{margin-bottom:3px;color:#ccc}
+.empty-msg{text-align:center;padding:40px;color:#666;grid-column:1/-1;font-size:15px}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
+.modal.active{display:flex}
+.modal-content{position:relative;max-width:90%;max-height:90%;background:#1a1f3a;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 25px 50px rgba(0,0,0,0.7)}
+.modal-image{max-width:100%;max-height:100%;object-fit:contain}
+.modal-close{position:absolute;top:16px;right:16px;background:rgba(0,0,0,0.6);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;transition:all 0.3s;backdrop-filter:blur(10px)}
+.modal-close:hover{background:#c62828;transform:rotate(90deg)}
+.modal-info{padding:20px;color:#aaa;font-size:13px;border-top:1px solid rgba(255,255,255,0.1)}
+.modal-info strong{color:#fff;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🎨 Paint Color Gallery</h1>
+<a href="index.html" class="back-btn">← Back to Home</a>
+</div>
+<div class="subtitle">Explore color palettes with beautiful interior & exterior references</div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab('colors')">🎨 Color Gallery</button>
+<button class="tab-btn" onclick="switchTab('gallery')">🖼️ Shop Gallery</button>
+</div>
+<div id="colors" class="tab-content active">
+<div id="colorGallery"></div>
+<div id="colorEmptyMsg" class="empty-msg" style="display:none;">No colors added yet. Go to Home to add content!</div>
+</div>
+<div id="gallery" class="tab-content">
+<div class="filter-row">
+<div class="chip active" data-filter="all" onclick="filterShopGallery(this)">All</div>
+<div class="chip" data-filter="interior" onclick="filterShopGallery(this)">🏠 Interior</div>
+<div class="chip" data-filter="exterior" onclick="filterShopGallery(this)">🌳 Exterior</div>
+<div class="chip" data-filter="ceiling" onclick="filterShopGallery(this)">✨ Ceiling</div>
+<div class="chip" data-filter="kids" onclick="filterShopGallery(this)">🎨 Kids room</div>
+<input type="text" id="shopSearch" class="search-input" placeholder="Search images..." oninput="filterShopGallery()">
+</div>
+<div id="shopGallery" class="grid"></div>
+<div id="shopEmptyMsg" class="empty-msg" style="display:none;">No images added yet. Upload from Home!</div>
+</div>
+</div>
+<div id="imageModal" class="modal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeImageModal()">×</button>
+<img id="modalImage" class="modal-image" src="" alt="">
+<div class="modal-info">
+<strong id="modalTitle"></strong>
+<div id="modalDesc"></div>
+</div>
+</div>
+</div>
+<script>
+const COLORS_KEY="sahu_paints_colors_v1";
+const IMAGES_KEY="sahu_paints_images_v1";
+let allColors=[];
+let allImages=[];
+let currentShopFilter='all';
+let currentShopSearch='';
+function loadData(){try{allColors=JSON.parse(localStorage.getItem(COLORS_KEY)||"[]");allImages=JSON.parse(localStorage.getItem(IMAGES_KEY)||"[]");}catch(e){allColors=[];allImages=[];}}
 function switchTab(tab){document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));document.getElementById(tab).classList.add('active');event.target.classList.add('active');if(tab==='colors')renderColors();if(tab==='gallery')renderShopGallery();}
-function renderColors(){const container=document.getElementById('colorGallery');const emptyMsg=document.getElementById('colorEmptyMsg');container.innerHTML='';if(allColors.length===0){emptyMsg.style.display='block';return;}emptyMsg.style.display='none';const grouped={};allColors.forEach(c=>{const seg=c.segment||'other';if(!grouped[seg])grouped[seg]=[];grouped[seg].push(c);});const order=['interior','exterior','ceiling','kids','other'];const names={interior:'🏠 Interior',exterior:'🌳 Exterior',ceiling:'✨ Ceiling',kids:'🎨 Kids room',other:'📌 Other'};order.forEach(seg=>{if(!grouped[seg])return;const section=document.createElement('div');const title=document.createElement('div');title.className='section-title';title.textContent=names[seg];section.appendChild(title);const grid=document.createElement('div');grid.className='grid';grouped[seg].forEach(c=>{const card=document.createElement('div');card.className='color-card';const swatch=document.createElement('div');swatch.className='color-swatch';swatch.style.background=c.hex||'#ccc';const body=document.createElement('div');body.className='color-card-body';body.innerHTML=`<div class="color-name">${c.name||'Unnamed'}</div><div class="color-code">${c.code||c.hex}</div>`;card.appendChild(swatch);card.appendChild(body);grid.appendChild(card);});section.appendChild(grid);container.appendChild(section);});}
-function renderShopGallery(){const container=document.getElementById('shopGallery');const emptyMsg=document.getElementById('shopEmptyMsg');container.innerHTML='';let filtered=allImages;if(currentShopFilter!=='all'){filtered=filtered.filter(img=>(img.segment||'other')===currentShopFilter);}if(currentShopSearch){const term=currentShopSearch.toLowerCase();filtered=filtered.filter(img=>(img.title&&img.title.toLowerCase().includes(term))||(img.area&&img.area.toLowerCase().includes(term))||(img.desc&&img.desc.toLowerCase().includes(term)));}if(filtered.length===0){emptyMsg.style.display='block';return;}emptyMsg.style.display='none';filtered.forEach(img=>{const card=document.createElement('div');card.className='image-card';card.style.cursor='pointer';card.onclick=()=>openImageModal(img);const wrap=document.createElement('div');wrap.className='image-wrapper';const imgEl=document.createElement('img');imgEl.src=img.data;imgEl.alt=img.title||'Shop image';wrap.appendChild(imgEl);const body=document.createElement('div');body.className='image-body';body.innerHTML=`<strong>${img.title||'Photo'}</strong>${img.area?`<div>${img.area}</div>`:''}`;card.appendChild(wrap);card.appendChild(body);container.appendChild(card);});}
+function renderColors(){const container=document.getElementById('colorGallery');const emptyMsg=document.getElementById('colorEmptyMsg');container.innerHTML='';if(allColors.length===0){emptyMsg.style.display='block';return;}emptyMsg.style.display='none';const grouped={};allColors.forEach(c=>{const seg=c.segment||'other';if(!grouped[seg])grouped[seg]=[];grouped[seg].push(c);});const order=['interior','exterior','ceiling','kids','other'];const names={interior:'🏠 Interior',exterior:'🌳 Exterior',ceiling:'✨ Ceiling',kids:'🎨 Kids room',other:'📌 Other'};order.forEach(seg=>{if(!grouped[seg])return;const section=document.createElement('div');const title=document.createElement('div');title.className='section-title';title.textContent=names[seg];section.appendChild(title);const grid=document.createElement('div');grid.className='grid';grouped[seg].forEach(c=>{const card=document.createElement('div');card.className='color-card';const swatch=document.createElement('div');swatch.className='color-swatch';swatch.style.background=c.hex||'#ccc';const body=document.createElement('div');body.className='color-card-body';const nameDiv=document.createElement('div');nameDiv.className='color-name';nameDiv.textContent=c.name||'Unnamed';const codeDiv=document.createElement('div');codeDiv.className='color-code';codeDiv.textContent=c.code||c.hex;body.appendChild(nameDiv);body.appendChild(codeDiv);card.appendChild(swatch);card.appendChild(body);grid.appendChild(card);});section.appendChild(grid);container.appendChild(section);});}
+function renderShopGallery(){const container=document.getElementById('shopGallery');const emptyMsg=document.getElementById('shopEmptyMsg');container.innerHTML='';let filtered=allImages;if(currentShopFilter!=='all'){filtered=filtered.filter(img=>(img.segment||'other')===currentShopFilter);}if(currentShopSearch){const term=currentShopSearch.toLowerCase();filtered=filtered.filter(img=>(img.title&&img.title.toLowerCase().includes(term))||(img.area&&img.area.toLowerCase().includes(term))||(img.desc&&img.desc.toLowerCase().includes(term)));}if(filtered.length===0){emptyMsg.style.display='block';return;}emptyMsg.style.display='none';filtered.forEach(img=>{const card=document.createElement('div');card.className='image-card';card.style.cursor='pointer';card.onclick=()=>openImageModal(img);const wrap=document.createElement('div');wrap.className='image-wrapper';const imgEl=document.createElement('img');imgEl.src=img.data;imgEl.alt=img.title||'Shop image';wrap.appendChild(imgEl);const body=document.createElement('div');body.className='image-body';let shadesHtml='';if(img.shades&&img.shades.length>0){shadesHtml='<div class="shades-list">';img.shades.forEach(shade=>{shadesHtml+='<div class="shade-item">• '+shade.name+' ('+shade.code+')</div>';});shadesHtml+='</div>';}body.innerHTML='<strong>'+(img.title||'Photo')+'</strong>'+(img.area?'<div>'+img.area+'</div>':'')+shadesHtml;card.appendChild(wrap);card.appendChild(body);container.appendChild(card);});}
 function filterShopGallery(chip){if(chip){document.querySelectorAll('[data-filter]').forEach(el=>el.classList.remove('active'));chip.classList.add('active');currentShopFilter=chip.dataset.filter;}const searchInput=document.getElementById('shopSearch');if(searchInput){currentShopSearch=searchInput.value;}renderShopGallery();}
-function openImageModal(img){document.getElementById('modalImage').src=img.data;document.getElementById('modalTitle').textContent=img.title||'Shop Image';document.getElementById('modalDesc').textContent=img.area?`Location: ${img.area}`:(img.desc||'');document.getElementById('imageModal').classList.add('active');}
+function openImageModal(img){document.getElementById('modalImage').src=img.data;document.getElementById('modalTitle').textContent=img.title||'Shop Image';document.getElementById('modalDesc').textContent=img.area?'Location: '+img.area:(img.desc||'');document.getElementById('imageModal').classList.add('active');}
 function closeImageModal(){document.getElementById('imageModal').classList.remove('active');}
-document.getElementById('imageModal').addEventListener('click',(e)=>{if(e.target.id==='imageModal')closeImageModal();});loadData();renderColors();window.addEventListener('storage',(e)=>{if(e.key===COLORS_KEY||e.key===IMAGES_KEY){loadData();const activeTab=document.querySelector('.tab-content.active');if(activeTab.id==='colors')renderColors();else renderShopGallery();}});
-</script></body></html>
+document.getElementById('imageModal').addEventListener('click',(e)=>{if(e.target.id==='imageModal')closeImageModal();});
+loadData();renderColors();window.addEventListener('storage',(e)=>{if(e.key===COLORS_KEY||e.key===IMAGES_KEY){loadData();const activeTab=document.querySelector('.tab-content.active');if(activeTab.id==='colors')renderColors();else renderShopGallery();}});
+</script>
+</body>
+</html>
