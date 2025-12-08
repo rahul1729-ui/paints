@@ -716,12 +716,14 @@
     const COLORS_KEY = "sahu_paints_colors_v1";
     const IMAGES_KEY = "sahu_paints_images_v1";
 
-    let colors = [];
+    1038
+      ;
     let images = [];
     let activeFilter = "all";
     let searchTerm = "";
 
     let selectedColorIndex = null; // for modal
+    let imageDataTemp = null;
 
     // ===== HELPERS: STORAGE =====
     function loadData() {
@@ -1034,7 +1036,6 @@
       // image file preview + save
       const imageFileInput = document.getElementById("imageFile");
       const imagePreviewBox = document.getElementById("imagePreviewBox");
-      let imageDataTemp = null;
 
       imageFileInput.addEventListener("change", () => {
         const file = imageFileInput.files[0];
