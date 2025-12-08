@@ -1,286 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paint Color Gallery - Sahu Paints</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; min-height: 100vh; padding: 20px; }
-        .container { max-width: 1400px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
-        .header h1 { font-size: 32px; display: flex; align-items: center; gap: 10px; }
-        .back-btn { background: #0080ff; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block; transition: background 0.3s; }
-        .back-btn:hover { background: #0066cc; }
-        .subtitle { color: #aaa; margin-bottom: 20px; text-align: center; font-size: 16px; }
-        .segment-section { margin-bottom: 40px; }
-        .segment-title { font-size: 24px; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #0080ff; }
-        .segment-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
-        @media (max-width: 1000px) { .segment-layout { grid-template-columns: 1fr; } }
-        .image-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-        .image-card { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.3s; }
-        .image-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
-        .image-card img { width: 100%; height: 150px; object-fit: cover; }
-        .image-card-label { padding: 10px; background: #222; font-size: 12px; text-align: center; color: #aaa; }
-        .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
-        .palette-item { text-align: center; cursor: pointer; }
-        .color-swatch { width: 100%; height: 80px; border-radius: 8px; margin-bottom: 8px; border: 2px solid #444; transition: border-color 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        .palette-item:hover .color-swatch { border-color: #0080ff; transform: scale(1.05); }
-        .palette-name { font-size: 12px; color: #aaa; font-weight: 500; margin-bottom: 3px; }
-        .palette-code { font-size: 10px; color: #777; font-family: monospace; }
-        .empty-msg { text-align: center; padding: 30px; color: #888; grid-column: 1 / -1; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
-        .modal-overlay.active { display: flex; }
-        .modal { background: #2a2a3e; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #444; background: #1a1a2e; }
-        .modal-title { font-size: 18px; font-weight: 600; }
-        .modal-close { background: none; border: none; color: #888; font-size: 24px; cursor: pointer; }
-        .modal-close:hover { color: #fff; }
-        .modal-body { padding: 20px; }
-        .color-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 12px; background: #1a1a2e; border-radius: 6px; }
-        .color-info { display: flex; align-items: center; gap: 10px; flex: 1; }
-        .color-detail-swatch { width: 40px; height: 40px; border-radius: 4px; border: 1px solid #444; }
-        .color-detail-text { flex: 1; }
-        .color-detail-name { font-size: 13px; color: #aaa; }
-        .color-detail-code { font-size: 12px; color: #0080ff; font-family: monospace; font-weight: 600; }
-        .copy-btn { background: #0080ff; border: none; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: background 0.2s; }
-        .copy-btn:hover { background: #0066cc; }
-        .toast { position: fixed; bottom: 20px; right: 20px; background: #28a745; color: white; padding: 12px 20px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 2000; animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paint Color Gallery - Sahu Paints</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', system-ui; background: #f5f6fa; color: #222; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; background: linear-gradient(135deg, #ffffff, #ffe5e5); padding: 16px; border-radius: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+.header h1 { font-size: 28px; display: flex; align-items: center; gap: 10px; }
+.back-btn { background: #c62828; color: white; border: none; padding: 10px 16px; border-radius: 999px; cursor: pointer; font-size: 12px; text-decoration: none; display: inline-block; transition: all 0.12s; }
+.back-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(198,40,40,0.65); }
+.subtitle { color: #777; margin-bottom: 16px; text-align: center; font-size: 14px; }
+.tabs { display: flex; gap: 8px; margin-bottom: 16px; padding: 8px; background: white; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.05); }
+.tab-btn { background: #fafafa; border: 1px solid #e0e0e0; padding: 8px 16px; border-radius: 12px; cursor: pointer; font-size: 12px; transition: all 0.16s; }
+.tab-btn.active { background: #c62828; color: white; border-color: #c62828; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.filter-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; }
+.chip { padding: 6px 10px; border-radius: 999px; border: 1px solid #e0e0e0; font-size: 11px; background: #fafafa; color: #777; cursor: pointer; transition: all 0.16s; }
+.chip.active { background: #ffe5e5; border-color: #c62828; color: #c62828; }
+.search-input { flex: 1 1 140px; min-width: 120px; border-radius: 999px; border: 1px solid #e0e0e0; padding: 7px 12px; font-size: 12px; outline: none; background: #fafafa; }
+.search-input:focus { border-color: #c62828; background: white; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.color-card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); cursor: pointer; display: flex; flex-direction: column; transition: all 0.14s; }
+.color-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); }
+.color-swatch { height: 90px; background: #ccc; }
+.color-card-body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 4px; }
+.color-name { font-size: 13px; font-weight: 500; }
+.color-code { font-size: 10px; color: #777; font-family: monospace; }
+.image-card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: all 0.14s; }
+.image-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); }
+.image-wrapper { position: relative; width: 100%; padding-top: 70%; overflow: hidden; }
+.image-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.image-body { padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; font-size: 11px; }
+.empty-msg { text-align: center; padding: 30px; color: #888; grid-column: 1 / -1; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎨 Paint Color Gallery</h1>
-            <a href="index.html" class="back-btn">← Back to Home</a>
-        </div>
-        <div class="subtitle">Explore color palettes with beautiful interior & exterior references</div>
-        
-        <div id="galleryContainer"></div>
-        <div id="emptyMsg" class="empty-msg" style="display:none;">No colors or images added yet. Go to Home to add content!</div>
-    </div>
+<div class="container">
+<div class="header">
+<h1>🎨 Paint Color Gallery</h1>
+<a href="index.html" class="back-btn">← Back to Home</a>
+</div>
+<div class="subtitle">Explore color palettes with beautiful interior & exterior references</div>
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab('colors')">Color Gallery</button>
+<button class="tab-btn" onclick="switchTab('gallery')">Shop Gallery</button>
+</div>
+<div id="colors" class="tab-content active">
+<div id="colorGallery"></div>
+<div id="colorEmptyMsg" class="empty-msg" style="display:none;">No colors added yet</div>
+</div>
+<div id="gallery" class="tab-content">
+<div class="filter-row">
+<div class="chip active" data-filter="all" onclick="filterShopGallery(this)">All</div>
+<div class="chip" data-filter="interior" onclick="filterShopGallery(this)">Interior</div>
+<div class="chip" data-filter="exterior" onclick="filterShopGallery(this)">Exterior</div>
+<div class="chip" data-filter="ceiling" onclick="filterShopGallery(this)">Ceiling</div>
+<div class="chip" data-filter="kids" onclick="filterShopGallery(this)">Kids room</div>
+<input type="text" id="shopSearch" class="search-input" placeholder="Search images..." oninput="filterShopGallery()">
+</div>
+<div id="shopGallery" class="grid"></div>
+<div id="shopEmptyMsg" class="empty-msg" style="display:none;">No images added yet</div>
+</div>
+</div>
+<script>
+const COLORS_KEY = "sahu_paints_colors_v1";
+const IMAGES_KEY = "sahu_paints_images_v1";
+let allColors = [];
+let allImages = [];
+let currentShopFilter = 'all';
+let currentShopSearch = '';
 
-    <div id="modalOverlay" class="modal-overlay">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-title" id="modalTitle">Colors</div>
-                <button class="modal-close" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body" id="modalBody"></div>
-        </div>
-    </div>
+function loadData() {
+try {
+allColors = JSON.parse(localStorage.getItem(COLORS_KEY) || "[]");
+allImages = JSON.parse(localStorage.getItem(IMAGES_KEY) || "[]");
+} catch (e) {
+allColors = [];
+allImages = [];
+}
+}
 
-    <script>
-        const COLORS_KEY = "sahu_paints_colors_v1";
-        const IMAGES_KEY = "sahu_paints_images_v1";
-        let allColors = [];
-        let allImages = [];
+function switchTab(tab) {
+document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+document.getElementById(tab).classList.add('active');
+event.target.classList.add('active');
+if (tab === 'colors') renderColors();
+if (tab === 'gallery') renderShopGallery();
+}
 
-        function loadData() {
-            try {
-                allColors = JSON.parse(localStorage.getItem(COLORS_KEY) || "[]");
-                allImages = JSON.parse(localStorage.getItem(IMAGES_KEY) || "[]");
-            } catch (e) {
-                allColors = [];
-                allImages = [];
-            }
-        }
+function renderColors() {
+const container = document.getElementById('colorGallery');
+const emptyMsg = document.getElementById('colorEmptyMsg');
+container.innerHTML = '';
 
-        function groupBySegment(data, key) {
-            const groups = {};
-            data.forEach(item => {
-                const segment = item[key] || 'other';
-                if (!groups[segment]) groups[segment] = [];
-                groups[segment].push(item);
-            });
-            return groups;
-        }
+if (allColors.length === 0) {
+emptyMsg.style.display = 'block';
+return;
+}
+emptyMsg.style.display = 'none';
 
-        function renderGallery() {
-            const container = document.getElementById('galleryContainer');
-            const emptyMsg = document.getElementById('emptyMsg');
-            
-            container.innerHTML = '';
-            
-            if (allColors.length === 0 && allImages.length === 0) {
-                emptyMsg.style.display = 'block';
-                return;
-            }
-            emptyMsg.style.display = 'none';
-            
-            const colorGroups = groupBySegment(allColors, 'segment');
-            const imageGroups = groupBySegment(allImages, 'area');
-            
-            const segmentNames = {
-                'interior': '🏠 Interior',
-                'exterior': '🌳 Exterior',
-                'ceiling': '✨ Ceiling',
-                'kids': '🎨 Kids Room',
-                'other': '📌 Other'
-            };
-            
-            const allSegments = new Set([...Object.keys(colorGroups), ...Object.keys(imageGroups)]);
-            
-            allSegments.forEach(segment => {
-                const colors = colorGroups[segment] || [];
-                const images = imageGroups[segment] || [];
-                
-                if (colors.length === 0 && images.length === 0) return;
-                
-                const section = document.createElement('div');
-                section.className = 'segment-section';
-                
-                const title = document.createElement('div');
-                title.className = 'segment-title';
-                title.textContent = segmentNames[segment] || segment;
-                section.appendChild(title);
-                
-                const layout = document.createElement('div');
-                layout.className = 'segment-layout';
-                
-                // Images column
-                const imagesCol = document.createElement('div');
-                imagesCol.className = 'image-gallery';
-                
-                if (images.length > 0) {
-                    images.forEach(img => {
-                        const card = document.createElement('div');
-                        card.className = 'image-card';
-                        
-                        const imgEl = document.createElement('img');
-                        imgEl.src = img.data;
-                        imgEl.alt = img.title;
-                        card.appendChild(imgEl);
-                        
-                        const label = document.createElement('div');
-                        label.className = 'image-card-label';
-                        label.textContent = img.title || 'Shop photo';
-                        card.appendChild(label);
-                        
-                        imagesCol.appendChild(card);
-                    });
-                } else {
-                    const placeholder = document.createElement('div');
-                    placeholder.style.cssText = 'color: #666; text-align: center; padding: 20px; grid-column: 1/-1;';
-                    placeholder.textContent = 'No reference images yet';
-                    imagesCol.appendChild(placeholder);
-                }
-                layout.appendChild(imagesCol);
-                
-                // Colors column
-                const colorsCol = document.createElement('div');
-                colorsCol.className = 'palette-grid';
-                
-                if (colors.length > 0) {
-                    colors.forEach(color => {
-                        const item = document.createElement('div');
-                        item.className = 'palette-item';
-                        item.onclick = () => openModal(segment);
-                        
-                        const swatch = document.createElement('div');
-                        swatch.className = 'color-swatch';
-                        swatch.style.background = color.hex || '#ccc';
-                        item.appendChild(swatch);
-                        
-                        const name = document.createElement('div');
-                        name.className = 'palette-name';
-                        name.textContent = color.name || 'Unnamed';
-                        item.appendChild(name);
-                        
-                        const code = document.createElement('div');
-                        code.className = 'palette-code';
-                        code.textContent = color.code || color.hex;
-                        item.appendChild(code);
-                        
-                        colorsCol.appendChild(item);
-                    });
-                } else {
-                    const placeholder = document.createElement('div');
-                    placeholder.style.cssText = 'color: #666; text-align: center; padding: 20px; grid-column: 1/-1;';
-                    placeholder.textContent = 'No colors added yet';
-                    colorsCol.appendChild(placeholder);
-                }
-                layout.appendChild(colorsCol);
-                
-                section.appendChild(layout);
-                container.appendChild(section);
-            });
-        }
+const grouped = {};
+allColors.forEach(c => {
+const seg = c.segment || 'other';
+if (!grouped[seg]) grouped[seg] = [];
+grouped[seg].push(c);
+});
 
-        function openModal(segment) {
-            const colors = allColors.filter(c => (c.segment || 'other') === segment);
-            const segmentNames = {
-                'interior': '🏠 Interior Colors',
-                'exterior': '🌳 Exterior Colors',
-                'ceiling': '✨ Ceiling Colors',
-                'kids': '🎨 Kids Room Colors',
-                'other': '📌 Other Colors'
-            };
-            
-            document.getElementById('modalTitle').textContent = segmentNames[segment];
-            
-            let body = '';
-            colors.forEach(color => {
-                body += `
-                    <div class="color-item">
-                        <div class="color-info">
-                            <div class="color-detail-swatch" style="background: ${color.hex || '#ccc'};"></div>
-                            <div class="color-detail-text">
-                                <div class="color-detail-name">${color.name || 'Unnamed'}</div>
-                                <div class="color-detail-code">${color.code || color.hex}</div>
-                                ${color.desc ? `<div style="font-size:10px;color:#999;margin-top:3px;">${color.desc}</div>` : ''}
-                            </div>
-                        </div>
-                        <button class="copy-btn" onclick="copyToClipboard('${(color.code || color.hex).replace(/'/g, "\\'")}', this)">Copy</button>
-                    </div>
-                `;
-            });
-            
-            document.getElementById('modalBody').innerHTML = body;
-            document.getElementById('modalOverlay').classList.add('active');
-        }
+const order = ['interior', 'exterior', 'ceiling', 'kids', 'other'];
+const names = {interior: '🏠 Interior', exterior: '🌳 Exterior', ceiling: '✨ Ceiling', kids: '🎨 Kids room', other: '📌 Other'};
 
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-        }
+order.forEach(seg => {
+if (!grouped[seg]) return;
+const section = document.createElement('div');
+section.innerHTML = `<div style="font-size:14px;font-weight:600;margin-top:20px;margin-bottom:10px;">${names[seg]}</div>`;
+const grid = document.createElement('div');
+grid.className = 'grid';
+grouped[seg].forEach(c => {
+const card = document.createElement('div');
+card.className = 'color-card';
+const swatch = document.createElement('div');
+swatch.className = 'color-swatch';
+swatch.style.background = c.hex || '#ccc';
+const body = document.createElement('div');
+body.className = 'color-card-body';
+body.innerHTML = `<div class="color-name">${c.name || 'Unnamed'}</div><div class="color-code">${c.code || c.hex}</div>`;
+card.appendChild(swatch);
+card.appendChild(body);
+grid.appendChild(card);
+});
+section.appendChild(grid);
+container.appendChild(section);
+});
+}
 
-        function copyToClipboard(text, btn) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btn.textContent;
-                btn.textContent = '✓ Copied';
-                btn.style.background = '#28a745';
-                showToast(`Copied: ${text}`);
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '';
-                }, 2000);
-            }).catch(() => alert('Failed to copy')); }
-        }
+function renderShopGallery() {
+const container = document.getElementById('shopGallery');
+const emptyMsg = document.getElementById('shopEmptyMsg');
+container.innerHTML = '';
 
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
+let filtered = allImages;
+if (currentShopFilter !== 'all') {
+filtered = filtered.filter(img => (img.segment || 'other') === currentShopFilter);
+}
+if (currentShopSearch) {
+const term = currentShopSearch.toLowerCase();
+filtered = filtered.filter(img => 
+(img.title && img.title.toLowerCase().includes(term)) ||
+(img.area && img.area.toLowerCase().includes(term)) ||
+(img.desc && img.desc.toLowerCase().includes(term))
+);
+}
 
-        document.getElementById('modalOverlay').addEventListener('click', (e) => {
-            if (e.target.id === 'modalOverlay') closeModal();
-        });
+if (filtered.length === 0) {
+emptyMsg.style.display = 'block';
+return;
+}
+emptyMsg.style.display = 'none';
 
-        // Initialize
-        loadData();
-        renderGallery();
+filtered.forEach(img => {
+const card = document.createElement('div');
+card.className = 'image-card';
+const wrap = document.createElement('div');
+wrap.className = 'image-wrapper';
+const imgEl = document.createElement('img');
+imgEl.src = img.data;
+imgEl.alt = img.title || 'Shop image';
+wrap.appendChild(imgEl);
+const body = document.createElement('div');
+body.className = 'image-body';
+body.innerHTML = `<strong>${img.title || 'Photo'}</strong>${img.area ? `<div style="color:#777;">${img.area}</div>` : ''}`;
+card.appendChild(wrap);
+card.appendChild(body);
+container.appendChild(card);
+});
+}
 
-        // Listen for storage changes
-        window.addEventListener('storage', (e) => {
-            if (e.key === COLORS_KEY || e.key === IMAGES_KEY) {
-                loadData();
-                renderGallery();
-            }
-        });
-    </script>
+function filterShopGallery(chip) {
+if (chip) {
+document.querySelectorAll('[data-filter]').forEach(el => el.classList.remove('active'));
+chip.classList.add('active');
+currentShopFilter = chip.dataset.filter;
+}
+const searchInput = document.getElementById('shopSearch');
+if (searchInput) {
+currentShopSearch = searchInput.value;
+}
+renderShopGallery();
+}
+
+loadData();
+renderColors();
+
+window.addEventListener('storage', (e) => {
+if (e.key === COLORS_KEY || e.key === IMAGES_KEY) {
+loadData();
+const activeTab = document.querySelector('.tab-content.active');
+if (activeTab.id === 'colors') renderColors();
+else renderShopGallery();
+}
+});
+</script>
 </body>
 </html>
