@@ -663,6 +663,11 @@
             <label for="imageFile">Select image</label>
             <input id="imageFile" type="file" accept="image/*" class="form-control" />
           </div>
+                              <div class="form-group" style="grid-column: 1/-1;">
+                      <label for="imageShadesContainer">Shades used in this image (optional)</label>
+                      <div id="imageShadesContainer" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                      <button type="button" id="btnAddShade" class="btn-ghost" style="margin-top: 8px; color: var(--primary);">+ Add shade</button>
+                    </div>
         </div>
 
         <div class="form-row-inline">
@@ -1068,8 +1073,19 @@
           alert("Please select an image first.");
           return;
         }
+                    
+            // Collect shades from the shade inputs
+            const shades = [];
+            const shadeInputs = document.querySelectorAll('#imageShadesContainer .shade-row');
+            shadeInputs.forEach(row => {
+              const nameInput = row.querySelector('.shade-name');
+              const codeInput = row.querySelector('.shade-code');
+              if (nameInput && codeInput && nameInput.value.trim()) {
+                shades.push({ name: nameInput.value.trim(), code: codeInput.value.trim() });
+              }
+            });
 
-        images.push({ segment, title, area, desc, data: imageDataTemp });
+        images.push({ segment, title, area, desc, shades, data: imageDataTemp });
         saveImages();
         renderImages();
 
@@ -1081,6 +1097,7 @@
         imagePreviewBox.textContent = "No image selected";
         imagePreviewBox.style.background = "#f1f1f1";
         imagePreviewBox.style.color = "#444";
+                    document.getElementById("imageShadesContainer").innerHTML = "";
 
         alert("Image saved.");
       });
@@ -1100,6 +1117,40 @@
         deleteColor(selectedColorIndex);
         closeColorModal();
       });
+      
+            // add shade button
+            document.getElementById("btnAddShade").addEventListener("click", () => {
+              const container = document.getElementById("imageShadesContainer");
+              const row = document.createElement("div");
+              row.className = "shade-row";
+              row.style.display = "flex";
+              row.style.gap = "8px";
+              row.style.marginBottom = "8px";
+              
+              const nameInput = document.createElement("input");
+              nameInput.type = "text";
+              nameInput.className = "shade-name form-control";
+              nameInput.placeholder = "Shade name (e.g. Larry Pin)";
+              nameInput.style.flex = "1";
+              
+              const codeInput = document.createElement("input");
+              codeInput.type = "text";
+              codeInput.className = "shade-code form-control";
+              codeInput.placeholder = "Code (e.g. 2056)";
+              codeInput.style.flex = "0.8";
+              
+              const btnRemove = document.createElement("button");
+              btnRemove.type = "button";
+              btnRemove.className = "btn-ghost";
+              btnRemove.textContent = "✕";
+              btnRemove.style.padding = "7px 10px";
+              btnRemove.addEventListener("click", () => row.remove());
+              
+              row.appendChild(nameInput);
+              row.appendChild(codeInput);
+              row.appendChild(btnRemove);
+              container.appendChild(row);
+            });
     }
 
     // ===== INIT =====
